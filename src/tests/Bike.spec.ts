@@ -1,6 +1,6 @@
 import { Bike } from "../models/Bike";
 
-test("bike attribution it should be ok", () => {
+test("bike attribution should be ok", () => {
   const bike = new Bike();
 
   bike.modelo = "Caloi 2015";
