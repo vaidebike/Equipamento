@@ -11,7 +11,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.ts": [
       "eslint --fix",
       "cross-env CI=true yarn test --bail --findRelatedTests",
       "git add"
