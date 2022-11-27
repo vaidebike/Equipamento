@@ -5,5 +5,5 @@ test("bike attribution should be ok", () => {
 
   bike.modelo = "Caloi 2015";
 
-  expect(bike.modelo).toEqual("Caloi 2015");
+  expect(bike.modelo).toEqual("Caloi 201");
 });

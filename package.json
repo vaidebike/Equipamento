@@ -5,6 +5,18 @@
   "repository": "https://github.com/vaidebike/Equipamento.git",
   "author": "Maria.Dias <maria.dias@somagrupo.com.br>",
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "cross-env CI=true yarn test --bail --findRelatedTests",
+      "git add"
+    ]
+  },
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "node dist/index.js",
@@ -25,6 +37,7 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.2",
     "jest": "^29.3.1",
     "ts-jest": "^29.0.3",
     "ts-node-dev": "^2.0.0",
