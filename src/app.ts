@@ -1,6 +1,7 @@
 import express from 'express';
 
 const app = express();
+app.disable('x-powered-by');
 
 app.get('/', (req, res) => {
   return res.json({ message: 'Hello World' });

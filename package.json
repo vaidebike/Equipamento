@@ -6,7 +6,7 @@
   "author": "Maria.Dias <maria.dias@somagrupo.com.br>",
   "license": "MIT",
   "lint-staged": {
-    "*.{js,ts,spect.ts}": [
+    "*.{js,ts}": [
       "eslint --fix",
       "yarn test --bail --findRelatedTests"
     ]
