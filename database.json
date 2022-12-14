@@ -24,5 +24,29 @@
             "status": "EM_USO",
             "localization": "Rua oiii"
         }
+    ],
+    "locks": [
+        {
+            "id": "519ea15b-6cfa-4770-b21e-054a5f0043a1",
+            "year": 2022,
+            "model": "Tranca 2034",
+            "localization": "Rua Francisco",
+            "status": "excluída"
+        },
+        {
+            "id": "7f9f3d0f-0ba3-4844-9575-42b31de632bf",
+            "year": 2025,
+            "model": "Tranca 2035",
+            "localization": "Rua Siqueira",
+            "status": "EXCLUIDA"
+        },
+        {
+            "id": "af223345-a550-466b-9598-7f4abfa68ab3",
+            "year": 2055,
+            "model": "Tranca 2055",
+            "localization": "Rua Tonelero",
+            "status": "NOVA",
+            "bicicleta": null
+        }
     ]
 }

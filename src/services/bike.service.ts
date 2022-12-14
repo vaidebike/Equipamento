@@ -17,7 +17,7 @@ export const createBike = async (
       brand,
       model,
       year,
-      status: 'nova',
+      status: 'NOVA',
       localization
     });
 
@@ -61,7 +61,7 @@ export const deleteBike = async (id: string): Promise<any | null> => {
       return -1;
     }
 
-    const bike = await db.push(`/bikes[${bikeIndex}]/status`, 'excluída', true);
+    const bike = await db.push(`/bikes[${bikeIndex}]/status`, 'EXCLUIDA', true);
 
     return bike;
   } catch (error) {
