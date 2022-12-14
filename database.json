@@ -48,5 +48,11 @@
             "status": "NOVA",
             "bicicleta": null
         }
+    ],
+    "totens": [
+        {
+            "id": "460392a7-a06d-4acf-8874-2ff2ebd3780e",
+            "localization": "Rua Francisco"
+        }
     ]
 }

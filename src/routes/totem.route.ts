@@ -1,8 +1,17 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Router } from 'express';
 
-const router = Router();
+import {
+  listTotens,
+  registerTotem,
+  excludeTotem,
+  updateTotem
+} from '../controllers/totem.controller';
 
-router.route('/').get();
+const totemRouter = Router();
 
-const totemRouter = router;
+totemRouter.get('/', listTotens).post('/', registerTotem);
+
+totemRouter.delete('/:id', excludeTotem).put('/:id', updateTotem);
+
 export default totemRouter;
