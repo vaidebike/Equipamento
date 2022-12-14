@@ -1,5 +1,5 @@
 import request from 'supertest';
-import server from '../app';
+import { server } from '../app';
 describe('Get Endpoints', () => {
   it('Should be able to get', async () => {
     const res = await request(server).get('/').send();

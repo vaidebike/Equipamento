@@ -1,0 +1,28 @@
+{
+    "bikes": [
+        {
+            "id": "c21240db-d3d2-460d-b0b8-10aa077a3284",
+            "brand": "Caloi",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "status": "NOVA",
+            "localization": "Rua Fran"
+        },
+        {
+            "id": "5d94e07c-c615-4784-bdad-aebf189056cd",
+            "brand": "Brand TESTE",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "status": "NOVA",
+            "localization": "Rua TESTE"
+        },
+        {
+            "id": "37b93bdb-90b8-49d4-8010-e723564508cf",
+            "brand": "Caloiiii",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "status": "EM_USO",
+            "localization": "Rua oiii"
+        }
+    ]
+}
