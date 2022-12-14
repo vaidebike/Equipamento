@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\Bike.test.ts">
-    <testCase name="bike attribution should be ok" duration="2"/>
+    <testCase name="bike attribution should be ok" duration="3"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\app.test.ts">
-    <testCase name="Get Endpoints Should be able to get" duration="27"/>
+    <testCase name="Get Endpoints Should be able to get" duration="52"/>
   </file>
 </testExecutions>
