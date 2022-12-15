@@ -1,7 +1,7 @@
 import { Totem } from '../../../models/Totem';
 
-describe('Lock Model', () => {
-  test('lock attribution should be ok', () => {
+describe('Totem Model', () => {
+  test('totem attribution should be ok', () => {
     const totem = new Totem();
 
     totem.id = '1';
