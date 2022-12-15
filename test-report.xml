@@ -1,40 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\app.test.ts">
-    <testCase name="Get Endpoints Should be able to get" duration="143"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\bike.controller.test.ts">
-    <testCase name="Bike controller should get all bikes" duration="10"/>
+    <testCase name="Get Endpoints Should be able to get" duration="61"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\lock.controller.test.ts">
-    <testCase name="Lock controller should get all locks" duration="7"/>
+    <testCase name="Lock controller should get all locks" duration="11"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\bike.controller.test.ts">
+    <testCase name="Bike controller should get all bikes" duration="8"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\totem.controller.test.ts">
-    <testCase name="Totem controller should get all totens" duration="6"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\bike.service.test.ts">
-    <testCase name="Bike service should get all bikes" duration="2"/>
-    <testCase name="Bike service should get a bike" duration="1"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by get" duration="0"/>
-    <testCase name="Bike service should create a bike" duration="1"/>
-    <testCase name="Bike service should delete a bike" duration="2"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by delete" duration="1"/>
-    <testCase name="Bike service should update a bike" duration="1"/>
-    <testCase name="Bike service should update a bike status" duration="1"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by update" duration="1"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by update bike status" duration="0"/>
+    <testCase name="Totem controller should get all totens" duration="8"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\lock.service.test.ts">
-    <testCase name="Lock service should get all locks" duration="2"/>
-    <testCase name="Lock service should get a lock" duration="1"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by get" duration="0"/>
+    <testCase name="Lock service should get all locks" duration="3"/>
+    <testCase name="Lock service should get a lock" duration="2"/>
+    <testCase name="Lock service should return -1 if didnt find a lock by get" duration="1"/>
     <testCase name="Lock service should create a lock" duration="1"/>
-    <testCase name="Lock service should delete a lock" duration="2"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by delete" duration="1"/>
-    <testCase name="Lock service should update a lock" duration="0"/>
+    <testCase name="Lock service should delete a lock" duration="1"/>
+    <testCase name="Lock service should return -1 if didnt find a lock by delete" duration="0"/>
+    <testCase name="Lock service should update a lock" duration="1"/>
     <testCase name="Lock service should update a lock status" duration="1"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by update" duration="0"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by update lock status" duration="1"/>
+    <testCase name="Lock service should return -1 if didnt find a lock by update" duration="1"/>
+    <testCase name="Lock service should return -1 if didnt find a lock by update lock status" duration="0"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\totem.service.test.ts">
     <testCase name="Totem service should get all totens" duration="2"/>
@@ -44,11 +32,23 @@
     <testCase name="Totem service should update a totem" duration="1"/>
     <testCase name="Totem service should return -1 if didnt find a totem by update" duration="0"/>
   </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\bike.service.test.ts">
+    <testCase name="Bike service should get all bikes" duration="3"/>
+    <testCase name="Bike service should get a bike" duration="2"/>
+    <testCase name="Bike service should return -1 if didnt find a bike by get" duration="0"/>
+    <testCase name="Bike service should create a bike" duration="1"/>
+    <testCase name="Bike service should delete a bike" duration="2"/>
+    <testCase name="Bike service should return -1 if didnt find a bike by delete" duration="0"/>
+    <testCase name="Bike service should update a bike" duration="2"/>
+    <testCase name="Bike service should update a bike status" duration="1"/>
+    <testCase name="Bike service should return -1 if didnt find a bike by update" duration="1"/>
+    <testCase name="Bike service should return -1 if didnt find a bike by update bike status" duration="1"/>
+  </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Totem.test.ts">
-    <testCase name="Totem Model totem attribution should be ok" duration="3"/>
+    <testCase name="Totem Model totem attribution should be ok" duration="2"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Lock.test.ts">
-    <testCase name="Lock Model lock attribution should be ok" duration="3"/>
+    <testCase name="Lock Model lock attribution should be ok" duration="2"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Bike.test.ts">
     <testCase name="Bike Model bike attribution should be ok" duration="3"/>
