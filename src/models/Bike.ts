@@ -1,10 +1,10 @@
 export class Bike {
-  id?: string;
-  brand?: string;
-  model?: string;
-  status?: string;
-  year?: string;
-  localization?: number;
+  id: string;
+  brand: string;
+  model: string;
+  status: string;
+  year: number;
+  localization: string;
 }
 
 export enum StatusEnum {

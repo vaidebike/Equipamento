@@ -1,9 +1,9 @@
 export class Lock {
-  id?: string;
-  model?: string;
-  year?: string;
-  status?: string;
-  localization?: number;
+  id: string;
+  model: string;
+  year: number;
+  status: string;
+  localization: string;
 }
 
 export enum StatusEnum {

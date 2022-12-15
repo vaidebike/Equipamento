@@ -1,4 +1,4 @@
-export class Bike {
-  id?: string;
-  localization?: number;
+export class Totem {
+  id: string;
+  localization: string;
 }
