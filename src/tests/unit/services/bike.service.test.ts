@@ -23,10 +23,6 @@ describe('Bike service', () => {
   const db = new JsonDB(new Config('database.test.json', true, true, '/'));
 
   db.delete('/bikes');
-  db.reload();
-  beforeEach(() => {
-    db.delete('/bikes');
-  });
 
   it('should get all bikes', async () => {
     const newBike = new Bike();

@@ -1,7 +1,9 @@
-import { db } from '../app';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { v4 as uuid } from 'uuid';
 
 export const createLock = async (
+  db: any,
   year: number,
   model: string,
   localization: string
@@ -14,8 +16,7 @@ export const createLock = async (
       year,
       model,
       localization,
-      status: 'NOVA',
-      bicicleta: null
+      status: 'NOVA'
     });
 
     const lockCreatedIndex = await db.getIndex('/locks', newLockID);
@@ -27,7 +28,7 @@ export const createLock = async (
   }
 };
 
-export const getLocks = async (): Promise<any | null> => {
+export const getLocks = async (db: any): Promise<any | null> => {
   try {
     const allLocks = await db.getData('/locks');
 
@@ -37,7 +38,7 @@ export const getLocks = async (): Promise<any | null> => {
   }
 };
 
-export const getLock = async (id: string): Promise<any | null> => {
+export const getLock = async (db: any, id: string): Promise<any | null> => {
   try {
     const lockIndex = await db.getIndex('/locks', id);
     if (lockIndex === -1) {
@@ -51,6 +52,7 @@ export const getLock = async (id: string): Promise<any | null> => {
 };
 
 export const updateLocks = async (
+  db: any,
   year: number,
   model: string,
   localization: string,
@@ -79,7 +81,7 @@ export const updateLocks = async (
   }
 };
 
-export const deleteLock = async (id: string): Promise<any | null> => {
+export const deleteLock = async (db: any, id: string): Promise<any | null> => {
   try {
     const lockIndex = await db.getIndex('/locks', id);
 
@@ -96,6 +98,7 @@ export const deleteLock = async (id: string): Promise<any | null> => {
 };
 
 export const updateLockStatus = async (
+  db: any,
   id: string,
   acao: string
 ): Promise<any | null> => {

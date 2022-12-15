@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Request, Response } from 'express';
+import { db } from '../app';
 
 import {
   ok,
@@ -39,7 +40,7 @@ export const registerLock = async (
   }
 
   try {
-    const lock = await createLock(year, model, localization);
+    const lock = await createLock(db, year, model, localization);
     return created(res, lock);
   } catch (error) {
     return serverError(res, error);
@@ -51,7 +52,7 @@ export const listLocks = async (
   res: Response
 ): Promise<any | null> => {
   try {
-    const locks = await getLocks();
+    const locks = await getLocks(db);
     return ok(res, locks);
   } catch (error) {
     return serverError(res, error);
@@ -65,7 +66,7 @@ export const listLock = async (
   try {
     const { id } = req.params;
 
-    const lock = await getLock(id);
+    const lock = await getLock(db, id);
     if (lock === -1) {
       return notFound(res, 'Lock not found');
     }
@@ -94,7 +95,7 @@ export const updateLock = async (
   }
 
   try {
-    const lock = await updateLocks(year, model, localization, id);
+    const lock = await updateLocks(db, year, model, localization, id);
 
     if (lock === -1) {
       return notFound(res, 'Lock not found');
@@ -113,7 +114,7 @@ export const excludeLock = async (
   try {
     const { id } = req.params;
 
-    const lock = await deleteLock(id);
+    const lock = await deleteLock(db, id);
 
     if (lock === -1) {
       return notFound(res, 'Lock not found');
@@ -136,7 +137,7 @@ export const changeLockStatus = async (
   }
 
   try {
-    const lock = await updateLockStatus(id, acao);
+    const lock = await updateLockStatus(db, id, acao);
 
     if (lock === -1) {
       return notFound(res, 'Lock not found');
