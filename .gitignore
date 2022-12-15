@@ -6,3 +6,6 @@ dist
 
 # Coverage directory
 coverage
+
+# Coverage directory
+package.lock.json

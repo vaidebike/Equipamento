@@ -7,6 +7,8 @@ import { router } from './routes';
 export const app = express();
 app.disable('x-powered-by');
 
+const port = process.env.PORT ?? 4000;
+
 export const db = new JsonDB(new Config('database', true, true, '/'));
 
 app.get('/', (req, res) => {
@@ -15,7 +17,7 @@ app.get('/', (req, res) => {
 
 export const server =
   process.env.NODE_ENV !== 'test' &&
-  app.listen(4000, () => {
+  app.listen(port, () => {
     console.log('Server started on port 4000!');
   });
 

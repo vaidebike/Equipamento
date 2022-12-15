@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    command: yarn dev
+    container_name: equipamento-api
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - '4002:4002'
