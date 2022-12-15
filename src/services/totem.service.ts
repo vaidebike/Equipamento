@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { db } from '../app';
+
 import { v4 as uuid } from 'uuid';
 
 export const createTotem = async (
+  db: any,
   localization: string
 ): Promise<any | null> => {
   try {
@@ -23,7 +25,7 @@ export const createTotem = async (
   }
 };
 
-export const getTotens = async (): Promise<any | null> => {
+export const getTotens = async (db: any): Promise<any | null> => {
   try {
     const allTotens = await db.getData('/totens');
 
@@ -34,6 +36,7 @@ export const getTotens = async (): Promise<any | null> => {
 };
 
 export const updateTotens = async (
+  db: any,
   localization: string,
   id: string
 ): Promise<any | null> => {
@@ -54,7 +57,7 @@ export const updateTotens = async (
   }
 };
 
-export const deleteTotem = async (id: string): Promise<any | null> => {
+export const deleteTotem = async (db: any, id: string): Promise<any | null> => {
   try {
     const totemIndex = await db.getIndex('/totens', id);
 

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
+import { db } from '../app';
 
 import {
   ok,
@@ -22,7 +23,7 @@ export const listTotens = async (
   res: Response
 ): Promise<any | null> => {
   try {
-    const totens = await getTotens();
+    const totens = await getTotens(db);
     return ok(res, totens);
   } catch (error) {
     return serverError(res, error);
@@ -42,7 +43,7 @@ export const registerTotem = async (
   }
 
   try {
-    const totem = await createTotem(localization);
+    const totem = await createTotem(db, localization);
     return created(res, totem);
   } catch (error) {
     return serverError(res, error);
@@ -63,7 +64,7 @@ export const updateTotem = async (
   }
 
   try {
-    const totem = await updateTotens(localization, id);
+    const totem = await updateTotens(db, localization, id);
 
     if (totem === -1) {
       return notFound(res, 'Totem not found');
@@ -82,7 +83,7 @@ export const excludeTotem = async (
   try {
     const { id } = req.params;
 
-    const totem = await deleteTotem(id);
+    const totem = await deleteTotem(db, id);
 
     if (totem === -1) {
       return notFound(res, 'Totem not found');
