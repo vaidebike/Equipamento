@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { db } from '../app';
 import { v4 as uuid } from 'uuid';
 
 export const createBike = async (
+  db: any,
   brand: string,
   model: string,
   year: number,
@@ -30,7 +31,7 @@ export const createBike = async (
   }
 };
 
-export const getBikes = async (): Promise<any | null> => {
+export const getBikes = async (db: any): Promise<any | null> => {
   try {
     const allBikes = await db.getData('/bikes');
 
@@ -40,9 +41,10 @@ export const getBikes = async (): Promise<any | null> => {
   }
 };
 
-export const getBike = async (id: string): Promise<any | null> => {
+export const getBike = async (db: any, id: string): Promise<any | null> => {
   try {
     const bikeIndex = await db.getIndex('/bikes', id);
+
     if (bikeIndex === -1) {
       return -1;
     }
@@ -53,7 +55,7 @@ export const getBike = async (id: string): Promise<any | null> => {
   }
 };
 
-export const deleteBike = async (id: string): Promise<any | null> => {
+export const deleteBike = async (db: any, id: string): Promise<any | null> => {
   try {
     const bikeIndex = await db.getIndex('/bikes', id);
 
@@ -70,6 +72,7 @@ export const deleteBike = async (id: string): Promise<any | null> => {
 };
 
 export const updateBikes = async (
+  db: any,
   brand: string,
   model: string,
   year: number,
@@ -103,6 +106,7 @@ export const updateBikes = async (
 };
 
 export const updateBikeStatus = async (
+  db: any,
   id: string,
   acao: string
 ): Promise<any | null> => {

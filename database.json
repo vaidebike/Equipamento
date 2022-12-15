@@ -5,7 +5,7 @@
             "brand": "Caloi",
             "model": "Caloi 2034",
             "year": 2024,
-            "status": "NOVA",
+            "status": "EM_USO",
             "localization": "Rua Fran"
         },
         {
@@ -23,6 +23,14 @@
             "year": 2024,
             "status": "EM_USO",
             "localization": "Rua oiii"
+        },
+        {
+            "id": "88fe1c36-6cf2-4289-95ec-b6b7771f03ec",
+            "brand": "Calor",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "status": "NOVA",
+            "localization": "Rua Fran"
         }
     ],
     "locks": [

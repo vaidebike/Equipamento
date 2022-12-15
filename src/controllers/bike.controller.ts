@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
+import { db } from '../app';
 
 import {
   ok,
@@ -26,7 +27,7 @@ export const listBikes = async (
   res: Response
 ): Promise<any | null> => {
   try {
-    const bikes = await getBikes();
+    const bikes = await getBikes(db);
     return ok(res, bikes);
   } catch (error) {
     return serverError(res, error);
@@ -40,7 +41,7 @@ export const listBike = async (
   try {
     const { id } = req.params;
 
-    const bike = await getBike(id);
+    const bike = await getBike(db, id);
     if (bike === -1) {
       return notFound(res, 'Bike not found');
     }
@@ -58,7 +59,7 @@ export const excludeBike = async (
   try {
     const { id } = req.params;
 
-    const bike = await deleteBike(id);
+    const bike = await deleteBike(db, id);
 
     if (bike === -1) {
       return notFound(res, 'Bike not found');
@@ -88,7 +89,7 @@ export const registerBike = async (
   }
 
   try {
-    const bike = await createBike(brand, model, year, localization);
+    const bike = await createBike(db, brand, model, year, localization);
     return created(res, bike);
   } catch (error) {
     return serverError(res, error);
@@ -114,7 +115,7 @@ export const updateBike = async (
   }
 
   try {
-    const bike = await updateBikes(brand, model, year, localization, id);
+    const bike = await updateBikes(db, brand, model, year, localization, id);
 
     if (bike === -1) {
       return notFound(res, 'Bike not found');
@@ -137,7 +138,7 @@ export const changeStatus = async (
   }
 
   try {
-    const bike = await updateBikeStatus(id, acao);
+    const bike = await updateBikeStatus(db, id, acao);
 
     if (bike === -1) {
       return notFound(res, 'Bike not found');
