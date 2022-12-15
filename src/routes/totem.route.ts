@@ -1,17 +1,27 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Router } from 'express';
 
-import {
-  listTotens,
-  registerTotem,
-  excludeTotem,
-  updateTotem
-} from '../controllers/totem.controller';
+const totemController = require('../controllers/totem.controller');
 
 const totemRouter = Router();
 
-totemRouter.get('/', listTotens).post('/', registerTotem);
+totemRouter
+  .route('/')
+  .post(function (req, res) {
+    totemController.registerTotem(req, res);
+  })
+  .get(function (req, res) {
+    totemController.listTotens(req, res);
+  });
 
-totemRouter.delete('/:id', excludeTotem).put('/:id', updateTotem);
+totemRouter
+  .route('/:id')
+  .put(function (req, res) {
+    totemController.updateTotem(req, res);
+  })
+  .delete(function (req, res) {
+    totemController.excludeTotem(req, res);
+  });
 
 export default totemRouter;

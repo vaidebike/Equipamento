@@ -34,7 +34,6 @@ export const createBike = async (
 export const getBikes = async (db: any): Promise<any | null> => {
   try {
     const allBikes = await db.getData('/bikes');
-
     return allBikes;
   } catch (error) {
     return console.error(error);
