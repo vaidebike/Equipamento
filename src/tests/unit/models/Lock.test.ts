@@ -12,7 +12,7 @@ describe('Lock Model', () => {
 
     expect(lock.id).toEqual('1');
     expect(lock.model).toEqual('Tranca 2016');
-    expect(lock.status).toEqual('TRANCADA');
+    expect(lock.status).toEqual('OCUPADA');
     expect(lock.year).toEqual(2016);
     expect(lock.localization).toEqual('Rua Tonelero, 119');
   });
