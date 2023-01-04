@@ -11,6 +11,8 @@ jest.setTimeout(30000);
 describe('Totem controller', () => {
   const mockRepository = {
     getTotens: jest.fn(),
+    getLocksAtTotem: jest.fn(),
+    getBikesAtTotem: jest.fn(),
     createTotem: jest.fn(),
     updateTotens: jest.fn(),
     deleteTotem: jest.fn()

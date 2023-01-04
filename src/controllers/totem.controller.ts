@@ -36,31 +36,23 @@ export const listLocks = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const { id } = req.params;
-    const totensLocks = await getLocksAtTotem(db, id);
+  const { id } = req.params;
+  const totensLocks = await getLocksAtTotem(db, id);
 
-    if (totensLocks === -1) {
-      return notFound(res, 'Totem not found');
-    }
-
-    return ok(res, totensLocks);
-  } catch (error) {
-    return serverError(res, error);
+  if (totensLocks === -1) {
+    return notFound(res, 'Totem not found');
   }
+
+  return ok(res, totensLocks);
 };
 
 export const listBikes = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const { id } = req.params;
-    const totensBikes = await getBikesAtTotem(db, id);
-    return ok(res, totensBikes);
-  } catch (error) {
-    return serverError(res, error);
-  }
+  const { id } = req.params;
+  const totensBikes = await getBikesAtTotem(db, id);
+  return ok(res, totensBikes);
 };
 
 export const registerTotem = async (
@@ -75,12 +67,8 @@ export const registerTotem = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const totem = await createTotem(db, localization);
-    return created(res, totem);
-  } catch (error) {
-    return serverError(res, error);
-  }
+  const totem = await createTotem(db, localization);
+  return created(res, totem);
 };
 
 export const updateTotem = async (
@@ -96,34 +84,26 @@ export const updateTotem = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const totem = await updateTotens(db, localization, id);
+  const totem = await updateTotens(db, localization, id);
 
-    if (totem === -1) {
-      return notFound(res, 'Totem not found');
-    }
-
-    return ok(res, totem);
-  } catch (error) {
-    return serverError(res, error);
+  if (totem === -1) {
+    return notFound(res, 'Totem not found');
   }
+
+  return ok(res, totem);
 };
 
 export const excludeTotem = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const totem = await deleteTotem(db, id);
+  const totem = await deleteTotem(db, id);
 
-    if (totem === -1) {
-      return notFound(res, 'Totem not found');
-    }
-
-    return ok(res, totem);
-  } catch (error) {
-    return serverError(res, error);
+  if (totem === -1) {
+    return notFound(res, 'Totem not found');
   }
+
+  return ok(res, totem);
 };
