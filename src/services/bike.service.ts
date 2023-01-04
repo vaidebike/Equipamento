@@ -13,7 +13,7 @@ export const createBike = async (
   try {
     const newBikeID = uuid();
 
-    await db.push('/bikes[]', {
+    await db.push('/tb_bicicleta[]', {
       id: newBikeID,
       brand,
       model,
@@ -22,8 +22,8 @@ export const createBike = async (
       localization
     });
 
-    const bikeCreatedIndex = await db.getIndex('/bikes', newBikeID);
-    const bikeCreated = await db.getData(`/bikes[${bikeCreatedIndex}]`);
+    const bikeCreatedIndex = await db.getIndex('/tb_bicicleta', newBikeID);
+    const bikeCreated = await db.getData(`/tb_bicicleta[${bikeCreatedIndex}]`);
 
     return bikeCreated;
   } catch (error) {
@@ -31,9 +31,124 @@ export const createBike = async (
   }
 };
 
+export const addRelBikeToLock = async (
+  db: any,
+  idTranca: string,
+  idBicicleta: string
+): Promise<any | null> => {
+  try {
+    const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
+
+    if (bikeIndex === -1) {
+      return -1;
+    }
+
+    const bikeIndexOnRel = await db.getIndex(
+      '/rel_tranca_bicicleta',
+      idBicicleta,
+      'idBicicleta'
+    );
+
+    if (bikeIndexOnRel !== -1) {
+      // SE A BICICLETA JÁ ESTIVER RELACIONADA A UMA TRANCA
+      return -600;
+    }
+
+    const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
+
+    if (
+      bike.status !== 'NOVA' &&
+      bike.status !== 'EM_REPARO' &&
+      bike.status !== 'EM_USO'
+    ) {
+      // SE A BICICLETA NÃO ESTIVER COM STATUS NOVA OU EM REPARO OU EM USO
+      return -500;
+    }
+
+    const trancaIndex = await db.getIndex('/tb_tranca', idTranca);
+
+    if (trancaIndex === -1) {
+      return -1;
+    }
+
+    const lock = await db.getData(`/tb_tranca[${trancaIndex}]`);
+
+    if (lock.status !== 'DISPONÍVEL') {
+      // SE A BICICLETA NÃO ESTIVER COM STATUS DISPONÍVEL
+      return -700;
+    }
+
+    await db.push(`/tb_bicicleta[${bikeIndex}]/status`, 'DISPONÍVEL', true);
+
+    await db.push(`/tb_tranca[${trancaIndex}]/status`, 'OCUPADA', true);
+
+    await db.push('/rel_tranca_bicicleta[]', {
+      idTranca,
+      idBicicleta
+    });
+
+    return bike;
+  } catch (error) {
+    return console.error(error);
+  }
+};
+
+export const deleteRelBikeToLock = async (
+  db: any,
+  idTranca: string,
+  idBicicleta: string,
+  acao: string
+): Promise<any | null> => {
+  try {
+    const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
+
+    const trancaIndex = await db.getIndex('/tb_tranca', idTranca);
+
+    const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
+
+    if (bikeIndex === -1) {
+      // BICICLETA NÃO EXISTE
+      return -1;
+    }
+
+    if (trancaIndex === -1) {
+      // TRANCA NÃO EXISTE
+      return -1;
+    }
+
+    if (bike.status !== 'REPARO_SOLICITADO') {
+      // BICICLETA SEM REPARO SOLICITADO
+      return -500;
+    }
+
+    const bikeIndexOnRel = await db.getIndex(
+      '/rel_tranca_bicicleta',
+      idBicicleta,
+      'idBicicleta'
+    );
+
+    if (bikeIndexOnRel === -1) {
+      // SE A BICICLETA NÃO ESTIVER RELACIONADA A NENHUMA TRANCA
+      return -600;
+    }
+
+    await db.delete(`/rel_tranca_bicicleta[${bikeIndexOnRel}]`);
+
+    const newStatus = acao;
+
+    await db.push(`/tb_bicicleta[${bikeIndex}]/status`, newStatus, true);
+
+    await db.push(`/tb_tranca[${trancaIndex}]/status`, 'DISPONÍVEL', true);
+
+    return bike;
+  } catch (error) {
+    return console.error(error);
+  }
+};
+
 export const getBikes = async (db: any): Promise<any | null> => {
   try {
-    const allBikes = await db.getData('/bikes');
+    const allBikes = await db.getData('/tb_bicicleta');
     return allBikes;
   } catch (error) {
     return console.error(error);
@@ -42,12 +157,12 @@ export const getBikes = async (db: any): Promise<any | null> => {
 
 export const getBike = async (db: any, id: string): Promise<any | null> => {
   try {
-    const bikeIndex = await db.getIndex('/bikes', id);
+    const bikeIndex = await db.getIndex('/tb_bicicleta', id);
 
     if (bikeIndex === -1) {
       return -1;
     }
-    const bike = await db.getData(`/bikes[${bikeIndex}]`);
+    const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
     return bike;
   } catch (error) {
     return console.error(error);
@@ -56,13 +171,17 @@ export const getBike = async (db: any, id: string): Promise<any | null> => {
 
 export const deleteBike = async (db: any, id: string): Promise<any | null> => {
   try {
-    const bikeIndex = await db.getIndex('/bikes', id);
+    const bikeIndex = await db.getIndex('/tb_bicicleta', id);
 
     if (bikeIndex === -1) {
       return -1;
     }
 
-    const bike = await db.push(`/bikes[${bikeIndex}]/status`, 'EXCLUIDA', true);
+    const bike = await db.push(
+      `/tb_bicicleta[${bikeIndex}]/status`,
+      'EXCLUIDA',
+      true
+    );
 
     return bike;
   } catch (error) {
@@ -79,25 +198,29 @@ export const updateBikes = async (
   id: string
 ): Promise<any | null> => {
   try {
-    const bikeIndex = await db.getIndex('/bikes', id);
+    const bikeIndex = await db.getIndex('/tb_bicicleta', id);
 
     if (bikeIndex === -1) {
       return -1;
     }
 
     const newBrand = brand;
-    await db.push(`/bikes[${bikeIndex}]/brand`, newBrand, true);
+    await db.push(`/tb_bicicleta[${bikeIndex}]/brand`, newBrand, true);
 
     const newModel = model;
-    await db.push(`/bikes[${bikeIndex}]/model`, newModel, true);
+    await db.push(`/tb_bicicleta[${bikeIndex}]/model`, newModel, true);
 
     const newYear = year;
-    await db.push(`/bikes[${bikeIndex}]/year`, newYear, true);
+    await db.push(`/tb_bicicleta[${bikeIndex}]/year`, newYear, true);
 
     const newLocalization = localization;
-    await db.push(`/bikes[${bikeIndex}]/localization`, newLocalization, true);
+    await db.push(
+      `/tb_bicicleta[${bikeIndex}]/localization`,
+      newLocalization,
+      true
+    );
 
-    const bike = await db.getData(`/bikes[${bikeIndex}]`);
+    const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
     return bike;
   } catch (error) {
     return console.error(error);
@@ -110,16 +233,16 @@ export const updateBikeStatus = async (
   acao: string
 ): Promise<any | null> => {
   try {
-    const bikeIndex = await db.getIndex('/bikes', id);
+    const bikeIndex = await db.getIndex('/tb_bicicleta', id);
 
     if (bikeIndex === -1) {
       return -1;
     }
 
     const newStatus = acao;
-    await db.push(`/bikes[${bikeIndex}]/status`, newStatus, true);
+    await db.push(`/tb_bicicleta[${bikeIndex}]/status`, newStatus, true);
 
-    const bike = await db.getData(`/bikes[${bikeIndex}]`);
+    const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
     return bike;
   } catch (error) {
     return console.error(error);

@@ -15,7 +15,9 @@ import {
   createTotem,
   getTotens,
   deleteTotem,
-  updateTotens
+  updateTotens,
+  getLocksAtTotem,
+  getBikesAtTotem
 } from '../services/totem.service';
 
 export const listTotens = async (
@@ -25,6 +27,37 @@ export const listTotens = async (
   try {
     const totens = await getTotens(db);
     return ok(res, totens);
+  } catch (error) {
+    return serverError(res, error);
+  }
+};
+
+export const listLocks = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  try {
+    const { id } = req.params;
+    const totensLocks = await getLocksAtTotem(db, id);
+
+    if (totensLocks === -1) {
+      return notFound(res, 'Totem not found');
+    }
+
+    return ok(res, totensLocks);
+  } catch (error) {
+    return serverError(res, error);
+  }
+};
+
+export const listBikes = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  try {
+    const { id } = req.params;
+    const totensBikes = await getBikesAtTotem(db, id);
+    return ok(res, totensBikes);
   } catch (error) {
     return serverError(res, error);
   }

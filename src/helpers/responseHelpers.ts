@@ -17,6 +17,17 @@ export const created = (res: Response, content: any): Response =>
     content
   });
 
+export const relationshipCreated = (
+  res: Response,
+  firstEntity: any,
+  secondEntity: any
+): Response =>
+  res.status(201).json({
+    code: 'CREATED',
+    firstEntity,
+    secondEntity
+  });
+
 export const empty = (res: Response, message: string): Response =>
   res.status(204).json({
     code: 'NO_CONTENT',

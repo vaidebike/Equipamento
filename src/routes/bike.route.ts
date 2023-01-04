@@ -30,6 +30,14 @@ router.route('/:id/status/:acao').post(function (req, res) {
   bikeController.changeStatus(req, res);
 });
 
+router.route('/integrarNaRede').post(function (req, res) {
+  bikeController.addBikeToVaDeBike(req, res);
+});
+
+router.route('/retirarDaRede').post(function (req, res) {
+  bikeController.removeBikeFromVaDeBike(req, res);
+});
+
 const bikeRouter = router;
 export default bikeRouter;
 module.exports = bikeRouter;

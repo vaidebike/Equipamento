@@ -1,66 +1,76 @@
 {
-    "bikes": [
+    "tb_totem": [
         {
-            "id": "c21240db-d3d2-460d-b0b8-10aa077a3284",
-            "brand": "Caloi",
-            "model": "Caloi 2034",
-            "year": 2024,
-            "status": "EM_USO",
-            "localization": "Rua Fran"
+            "id": "8628961d-82c2-44b5-9927-5aabb5c4de65",
+            "localization": "Rua Francisco Otaviano"
         },
         {
-            "id": "5d94e07c-c615-4784-bdad-aebf189056cd",
-            "brand": "Brand TESTE",
-            "model": "Caloi 2034",
-            "year": 2024,
-            "status": "NOVA",
-            "localization": "Rua TESTE"
+            "id": "caef64bf-df02-4f45-801f-bb95bac8b36e",
+            "localization": "Rua Anita Garibaldi"
         },
         {
-            "id": "37b93bdb-90b8-49d4-8010-e723564508cf",
-            "brand": "Caloiiii",
-            "model": "Caloi 2034",
-            "year": 2024,
-            "status": "EM_USO",
-            "localization": "Rua oiii"
-        },
-        {
-            "id": "88fe1c36-6cf2-4289-95ec-b6b7771f03ec",
-            "brand": "Calor",
-            "model": "Caloi 2034",
-            "year": 2024,
-            "status": "NOVA",
-            "localization": "Rua Fran"
+            "id": "d442b9b3-3f69-46a0-a110-d398e3877638",
+            "localization": "Rua Bolivar"
         }
     ],
-    "locks": [
+    "tb_tranca": [
         {
-            "id": "519ea15b-6cfa-4770-b21e-054a5f0043a1",
-            "year": 2022,
-            "model": "Tranca 2034",
-            "localization": "Rua Francisco",
-            "status": "excluída"
-        },
-        {
-            "id": "7f9f3d0f-0ba3-4844-9575-42b31de632bf",
-            "year": 2025,
-            "model": "Tranca 2035",
-            "localization": "Rua Siqueira",
-            "status": "EXCLUIDA"
-        },
-        {
-            "id": "af223345-a550-466b-9598-7f4abfa68ab3",
+            "id": "f706cd60-cfd5-43e5-9d98-f55067a8b80e",
             "year": 2055,
             "model": "Tranca 2055",
             "localization": "Rua Tonelero",
-            "status": "NOVA",
-            "bicicleta": null
+            "status": "OCUPADA"
+        },
+        {
+            "id": "b56f8b02-a993-4395-8711-9ce939be86c3",
+            "year": 2023,
+            "model": "Tranca Top",
+            "localization": "Rua Barata Ribeiro",
+            "status": "DISPONÍVEL"
+        },
+        {
+            "id": "758acda8-8e59-4c2d-ad0e-1c5064cf027f",
+            "year": 2025,
+            "model": "Tranca Ruim",
+            "localization": "Rua Rainha Elizabeth",
+            "status": "NOVA"
+        },
+        {
+            "id": "b0702769-a6a3-4127-bd58-7e1580505ccc",
+            "year": 2035,
+            "model": "Tranca Maneira",
+            "localization": "Rua Raul Pompeia",
+            "status": "OCUPADA"
         }
     ],
-    "totens": [
+    "rel_totem_tranca": [
         {
-            "id": "460392a7-a06d-4acf-8874-2ff2ebd3780e",
-            "localization": "Rua Francisco"
+            "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de65",
+            "idTranca": "f706cd60-cfd5-43e5-9d98-f55067a8b80e"
+        },
+        {
+            "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de65",
+            "idTranca": "b56f8b02-a993-4395-8711-9ce939be86c3"
+        },
+        {
+            "idTotem": "d442b9b3-3f69-46a0-a110-d398e3877638",
+            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505ccc"
+        }
+    ],
+    "tb_bicicleta": [
+        {
+            "id": "9c3c44c5-313a-4e04-9636-89aca282b1aa",
+            "brand": "Calor",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "status": "DISPONÍVEL",
+            "localization": "Rua Fran"
+        }
+    ],
+    "rel_tranca_bicicleta": [
+        {
+            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505ccc",
+            "idBicicleta": "9c3c44c5-313a-4e04-9636-89aca282b1aa"
         }
     ]
 }

@@ -15,6 +15,18 @@ router
     lockController.listLocks(req, res);
   });
 
+router.route('/integrarNaRede').post(function (req, res) {
+  lockController.addLockToVaDeBike(req, res);
+});
+
+router.route('/retirarDaRede').post(function (req, res) {
+  lockController.removeFromVaDeBike(req, res);
+});
+
+router.route('/DELETARBANCO').delete(function () {
+  lockController.deleteBD();
+});
+
 router
   .route('/:id')
   .get(function (req, res) {

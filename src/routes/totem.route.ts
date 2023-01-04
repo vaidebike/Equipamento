@@ -24,4 +24,12 @@ totemRouter
     totemController.excludeTotem(req, res);
   });
 
+totemRouter.route('/:id/trancas').get(function (req, res) {
+  totemController.listLocks(req, res);
+});
+
+totemRouter.route('/:id/bicicletas').get(function (req, res) {
+  totemController.listBikes(req, res);
+});
+
 export default totemRouter;

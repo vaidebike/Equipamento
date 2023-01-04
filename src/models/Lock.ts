@@ -7,6 +7,10 @@ export class Lock {
 }
 
 export enum StatusEnum {
-  Unlocked = 'DESTRANCADA',
-  Locked = 'TRANCADA',
+  Locked = 'OCUPADA', // OCUPADA VS DISPONÍVEL
+  Excluded = 'EXCLUIDA',
+  New = 'NOVA',
+  OnRepair = 'EM_REPARO',
+  Available = 'DISPONÍVEL',
+  ToBeRepaired = 'REPARO_SOLICITADO',
 }

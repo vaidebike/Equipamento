@@ -18,7 +18,10 @@ import {
   getLock,
   updateLocks,
   deleteLock,
-  updateLockStatus
+  updateLockStatus,
+  addRelLockToTotem,
+  deleteDatabase,
+  deleteRelLockToTotem
 } from '../services/lock.service';
 
 import { StatusEnum } from '../models/Lock';
@@ -146,5 +149,94 @@ export const changeLockStatus = async (
     return ok(res, lock);
   } catch (error) {
     return serverError(res, error);
+  }
+};
+
+export const addLockToVaDeBike = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  const { idTotem, idTranca } = req.body;
+
+  if (!idTotem || !idTranca) {
+    return badRequest(res, 'Missing required fields');
+  } else if (typeof idTotem !== 'string' || typeof idTranca !== 'string') {
+    return badRequest(res, 'Invalid fields');
+  }
+
+  try {
+    const lock = await addRelLockToTotem(db, idTotem, idTranca);
+
+    if (lock === -1) {
+      return notFound(res, 'Lock or Totem not found');
+    }
+
+    if (lock === -500) {
+      return badRequest(res, 'Lock must be new or in repair');
+    }
+
+    if (lock === -600) {
+      return badRequest(res, 'Lock already belongs to a totem');
+    }
+
+    return created(res, lock);
+  } catch (error) {
+    return serverError(res, error);
+  }
+};
+
+export const removeFromVaDeBike = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  const { idTotem, idTranca, acao } = req.body;
+
+  if (!idTotem || !idTranca || !acao) {
+    return badRequest(res, 'Missing required fields');
+  } else if (
+    typeof idTotem !== 'string' ||
+    typeof idTranca !== 'string' ||
+    typeof acao !== 'string'
+  ) {
+    return badRequest(res, 'Invalid fields');
+  } else if (acao !== 'EM_REPARO' && acao !== 'APOSENTADA') {
+    return badRequest(res, 'Action invalid');
+  }
+
+  try {
+    const lock = await deleteRelLockToTotem(db, idTotem, idTranca, acao);
+
+    if (lock === -1) {
+      return notFound(res, 'Lock or Totem not found');
+    }
+
+    if (lock === -500) {
+      return badRequest(res, 'Lock must have status as solicited repair');
+    }
+
+    if (lock === -600) {
+      return badRequest(res, 'Lock out of totens');
+    }
+
+    if (lock === -700) {
+      return badRequest(
+        res,
+        'To be removed, the lock cannot have a bike on it'
+      );
+    }
+
+    return ok(res, lock);
+  } catch (error) {
+    return serverError(res, error);
+  }
+};
+
+export const deleteBD = async (): Promise<any> => {
+  try {
+    await deleteDatabase(db);
+
+    return 'DB DELETE WITH SUCCESS';
+  } catch (error) {
+    return 'ERROR';
   }
 };
