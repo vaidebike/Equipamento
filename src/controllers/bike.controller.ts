@@ -28,49 +28,37 @@ export const listBikes = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const bikes = await getBikes(db);
-    return ok(res, bikes);
-  } catch (error) {
-    return serverError(res, error);
-  }
+  const bikes = await getBikes(db);
+  return ok(res, bikes);
 };
 
 export const listBike = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const bike = await getBike(db, id);
-    if (bike === -1) {
-      return notFound(res, 'Bike not found');
-    }
-
-    return ok(res, bike);
-  } catch (error) {
-    return serverError(res, error);
+  const bike = await getBike(db, id);
+  if (bike === -1) {
+    return notFound(res, 'Bike not found');
   }
+
+  return ok(res, bike);
 };
 
 export const excludeBike = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const bike = await deleteBike(db, id);
+  const bike = await deleteBike(db, id);
 
-    if (bike === -1) {
-      return notFound(res, 'Bike not found');
-    }
-
-    return ok(res, bike);
-  } catch (error) {
-    return serverError(res, error);
+  if (bike === -1) {
+    return notFound(res, 'Bike not found');
   }
+
+  return ok(res, bike);
 };
 
 export const registerBike = async (
@@ -90,12 +78,8 @@ export const registerBike = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const bike = await createBike(db, brand, model, year, localization);
-    return created(res, bike);
-  } catch (error) {
-    return serverError(res, error);
-  }
+  const bike = await createBike(db, brand, model, year, localization);
+  return created(res, bike);
 };
 
 export const addBikeToVaDeBike = async (
@@ -110,29 +94,25 @@ export const addBikeToVaDeBike = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const bike = await addRelBikeToLock(db, idTranca, idBicicleta);
+  const bike = await addRelBikeToLock(db, idTranca, idBicicleta);
 
-    if (bike === -1) {
-      return notFound(res, 'Bike or Lock not found');
-    }
-
-    if (bike === -500) {
-      return badRequest(res, 'Bike must be new or in repair');
-    }
-
-    if (bike === -600) {
-      return badRequest(res, 'Bike already belongs to a Lock');
-    }
-
-    if (bike === -700) {
-      return badRequest(res, 'Lock must be available');
-    }
-
-    return created(res, bike);
-  } catch (error) {
-    return serverError(res, error);
+  if (bike === -1) {
+    return notFound(res, 'Bike or Lock not found');
   }
+
+  if (bike === -500) {
+    return badRequest(res, 'Bike must be new or in repair');
+  }
+
+  if (bike === -600) {
+    return badRequest(res, 'Bike already belongs to a Lock');
+  }
+
+  if (bike === -700) {
+    return badRequest(res, 'Lock must be available');
+  }
+
+  return created(res, bike);
 };
 
 export const removeBikeFromVaDeBike = async (
@@ -153,25 +133,21 @@ export const removeBikeFromVaDeBike = async (
     return badRequest(res, 'Action invalid');
   }
 
-  try {
-    const bike = await deleteRelBikeToLock(db, idTranca, idBicicleta, acao);
+  const bike = await deleteRelBikeToLock(db, idTranca, idBicicleta, acao);
 
-    if (bike === -1) {
-      return notFound(res, 'Bike or Lock not found');
-    }
-
-    if (bike === -600) {
-      return badRequest(res, 'Bike out of locks');
-    }
-
-    if (bike === -500) {
-      return badRequest(res, 'Bike must have status as solicited repair');
-    }
-
-    return ok(res, bike);
-  } catch (error) {
-    return serverError(res, error);
+  if (bike === -1) {
+    return notFound(res, 'Bike or Lock not found');
   }
+
+  if (bike === -600) {
+    return badRequest(res, 'Bike out of locks');
+  }
+
+  if (bike === -500) {
+    return badRequest(res, 'Bike must have status as solicited repair');
+  }
+
+  return ok(res, bike);
 };
 
 export const updateBike = async (
@@ -192,17 +168,13 @@ export const updateBike = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const bike = await updateBikes(db, brand, model, year, localization, id);
+  const bike = await updateBikes(db, brand, model, year, localization, id);
 
-    if (bike === -1) {
-      return notFound(res, 'Bike not found');
-    }
-
-    return ok(res, bike);
-  } catch (error) {
-    return serverError(res, error);
+  if (bike === -1) {
+    return notFound(res, 'Bike not found');
   }
+
+  return ok(res, bike);
 };
 
 export const changeStatus = async (
@@ -215,15 +187,11 @@ export const changeStatus = async (
     return badRequest(res, 'Invalid status');
   }
 
-  try {
-    const bike = await updateBikeStatus(db, id, acao);
+  const bike = await updateBikeStatus(db, id, acao);
 
-    if (bike === -1) {
-      return notFound(res, 'Bike not found');
-    }
-
-    return ok(res, bike);
-  } catch (error) {
-    return serverError(res, error);
+  if (bike === -1) {
+    return notFound(res, 'Bike not found');
   }
+
+  return ok(res, bike);
 };

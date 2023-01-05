@@ -42,42 +42,30 @@ export const registerLock = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const lock = await createLock(db, year, model, localization);
-    return created(res, lock);
-  } catch (error) {
-    return serverError(res, error);
-  }
+  const lock = await createLock(db, year, model, localization);
+  return created(res, lock);
 };
 
 export const listLocks = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const locks = await getLocks(db);
-    return ok(res, locks);
-  } catch (error) {
-    return serverError(res, error);
-  }
+  const locks = await getLocks(db);
+  return ok(res, locks);
 };
 
 export const listLock = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const lock = await getLock(db, id);
-    if (lock === -1) {
-      return notFound(res, 'Lock not found');
-    }
-
-    return ok(res, lock);
-  } catch (error) {
-    return serverError(res, error);
+  const lock = await getLock(db, id);
+  if (lock === -1) {
+    return notFound(res, 'Lock not found');
   }
+
+  return ok(res, lock);
 };
 
 export const updateLock = async (
@@ -97,36 +85,28 @@ export const updateLock = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const lock = await updateLocks(db, year, model, localization, id);
+  const lock = await updateLocks(db, year, model, localization, id);
 
-    if (lock === -1) {
-      return notFound(res, 'Lock not found');
-    }
-
-    return ok(res, lock);
-  } catch (error) {
-    return serverError(res, error);
+  if (lock === -1) {
+    return notFound(res, 'Lock not found');
   }
+
+  return ok(res, lock);
 };
 
 export const excludeLock = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const lock = await deleteLock(db, id);
+  const lock = await deleteLock(db, id);
 
-    if (lock === -1) {
-      return notFound(res, 'Lock not found');
-    }
-
-    return ok(res, lock);
-  } catch (error) {
-    return serverError(res, error);
+  if (lock === -1) {
+    return notFound(res, 'Lock not found');
   }
+
+  return ok(res, lock);
 };
 
 export const changeLockStatus = async (
@@ -139,17 +119,13 @@ export const changeLockStatus = async (
     return badRequest(res, 'Invalid status');
   }
 
-  try {
-    const lock = await updateLockStatus(db, id, acao);
+  const lock = await updateLockStatus(db, id, acao);
 
-    if (lock === -1) {
-      return notFound(res, 'Lock not found');
-    }
-
-    return ok(res, lock);
-  } catch (error) {
-    return serverError(res, error);
+  if (lock === -1) {
+    return notFound(res, 'Lock not found');
   }
+
+  return ok(res, lock);
 };
 
 export const addLockToVaDeBike = async (
@@ -164,25 +140,21 @@ export const addLockToVaDeBike = async (
     return badRequest(res, 'Invalid fields');
   }
 
-  try {
-    const lock = await addRelLockToTotem(db, idTotem, idTranca);
+  const lock = await addRelLockToTotem(db, idTotem, idTranca);
 
-    if (lock === -1) {
-      return notFound(res, 'Lock or Totem not found');
-    }
-
-    if (lock === -500) {
-      return badRequest(res, 'Lock must be new or in repair');
-    }
-
-    if (lock === -600) {
-      return badRequest(res, 'Lock already belongs to a totem');
-    }
-
-    return created(res, lock);
-  } catch (error) {
-    return serverError(res, error);
+  if (lock === -1) {
+    return notFound(res, 'Lock or Totem not found');
   }
+
+  if (lock === -500) {
+    return badRequest(res, 'Lock must be new or in repair');
+  }
+
+  if (lock === -600) {
+    return badRequest(res, 'Lock already belongs to a totem');
+  }
+
+  return created(res, lock);
 };
 
 export const removeFromVaDeBike = async (
@@ -203,40 +175,23 @@ export const removeFromVaDeBike = async (
     return badRequest(res, 'Action invalid');
   }
 
-  try {
-    const lock = await deleteRelLockToTotem(db, idTotem, idTranca, acao);
+  const lock = await deleteRelLockToTotem(db, idTotem, idTranca, acao);
 
-    if (lock === -1) {
-      return notFound(res, 'Lock or Totem not found');
-    }
-
-    if (lock === -500) {
-      return badRequest(res, 'Lock must have status as solicited repair');
-    }
-
-    if (lock === -600) {
-      return badRequest(res, 'Lock out of totens');
-    }
-
-    if (lock === -700) {
-      return badRequest(
-        res,
-        'To be removed, the lock cannot have a bike on it'
-      );
-    }
-
-    return ok(res, lock);
-  } catch (error) {
-    return serverError(res, error);
+  if (lock === -1) {
+    return notFound(res, 'Lock or Totem not found');
   }
-};
 
-export const deleteBD = async (): Promise<any> => {
-  try {
-    await deleteDatabase(db);
-
-    return 'DB DELETE WITH SUCCESS';
-  } catch (error) {
-    return 'ERROR';
+  if (lock === -500) {
+    return badRequest(res, 'Lock must have status as solicited repair');
   }
+
+  if (lock === -600) {
+    return badRequest(res, 'Lock out of totens');
+  }
+
+  if (lock === -700) {
+    return badRequest(res, 'To be removed, the lock cannot have a bike on it');
+  }
+
+  return ok(res, lock);
 };

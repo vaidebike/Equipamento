@@ -24,12 +24,8 @@ export const listTotens = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  try {
-    const totens = await getTotens(db);
-    return ok(res, totens);
-  } catch (error) {
-    return serverError(res, error);
-  }
+  const totens = await getTotens(db);
+  return ok(res, totens);
 };
 
 export const listLocks = async (

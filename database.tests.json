@@ -1,0 +1,35 @@
+{
+    "tb_bicicleta": [
+        {
+            "id": "9c3c44c5-313a-4e04-9636-89aca282b1aa",
+            "brand": "Caloi",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "localization": "Rua Fran",
+            "status": "REPARO_SOLICITADO"
+        },
+        {
+            "id": "702649aa-fee0-4b09-b6f8-19a0dd6a4287",
+            "brand": "Caloi",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "status": "NOVA",
+            "localization": "Rua Fran"
+        }
+    ],
+    "tb_tranca": [
+        {
+            "id": "b0702769-a6a3-4127-bd58-7e1580505ccc",
+            "year": 2035,
+            "model": "Tranca Maneira",
+            "localization": "Rua Raul Pompeia",
+            "status": "OCUPADA"
+        }
+    ],
+    "tb_totem": [
+        {
+            "id": "82c0856b-5216-41f4-9386-85dc1dc848b4",
+            "localization": "Rua Fran"
+        }
+    ]
+}

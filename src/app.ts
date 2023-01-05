@@ -9,7 +9,11 @@ app.disable('x-powered-by');
 
 const port = process.env.PORT ?? 4000;
 
-export const db = new JsonDB(new Config('database', true, true, '/'));
+export let db = new JsonDB(new Config('database', true, true, '/'));
+
+if (process.env.NODE_ENV === 'test') {
+  db = new JsonDB(new Config('database.tests.json', true, true, '/'));
+}
 
 app.get('/', (req, res) => {
   return res.json({ message: 'Hello World' });
