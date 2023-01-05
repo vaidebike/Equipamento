@@ -4,13 +4,7 @@
 import { Request, Response } from 'express';
 import { db } from '../app';
 
-import {
-  ok,
-  created,
-  serverError,
-  notFound,
-  badRequest
-} from '../helpers/responseHelpers';
+import { ok, created, notFound, badRequest } from '../helpers/responseHelpers';
 
 import {
   createLock,
@@ -20,7 +14,6 @@ import {
   deleteLock,
   updateLockStatus,
   addRelLockToTotem,
-  deleteDatabase,
   deleteRelLockToTotem
 } from '../services/lock.service';
 

@@ -194,9 +194,3 @@ export const deleteRelLockToTotem = async (
 
   return lock;
 };
-
-export const deleteDatabase = async (db: any): Promise<any> => {
-  const dbDeleted = await db.delete('/');
-
-  return dbDeleted;
-};

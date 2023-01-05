@@ -39,7 +39,7 @@
             "localization": "Rua Fran"
         },
         {
-            "id": "68cce4f6-085b-4d36-b7cf-89a0e2a17b26",
+            "id": "c4d8af76-ca1f-4188-b5f5-77c5630091ba",
             "brand": "Caloi",
             "model": "Caloi 2034",
             "year": 2024,
@@ -85,7 +85,7 @@
     ],
     "tb_totem": [
         {
-            "id": "b3b6de58-ffc1-4fcf-b077-943e37b9ed15",
+            "id": "f1eb78e5-41d3-48c4-b38c-914d046e8cdb",
             "localization": "Rua Fran"
         }
     ]
