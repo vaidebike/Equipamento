@@ -1,15 +1,45 @@
 {
+    "rel_totem_tranca": [
+        {
+            "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de67",
+            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505cc4"
+        },
+        {
+            "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de66",
+            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505cc3"
+        },
+        {
+            "idTotem": "1bd9d5db-702d-4754-8260-e5d4586a2626",
+            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505ccc"
+        }
+    ],
     "tb_bicicleta": [
         {
             "id": "9c3c44c5-313a-4e04-9636-89aca282b1aa",
             "brand": "Caloi",
             "model": "Caloi 2034",
+            "status": "REPARO_SOLICITADO",
             "year": 2024,
-            "localization": "Rua Fran",
-            "status": "REPARO_SOLICITADO"
+            "localization": "Rua Fran"
         },
         {
-            "id": "702649aa-fee0-4b09-b6f8-19a0dd6a4287",
+            "id": "9c3c44c5-313a-4e04-9636-89aca282b1a2",
+            "brand": "Caloi",
+            "model": "Caloi 2034",
+            "status": "EM_REPARO",
+            "year": 2024,
+            "localization": "Rua Fran"
+        },
+        {
+            "id": "9c3c44c5-313a-4e04-9636-89aca282b1a3",
+            "brand": "Caloi",
+            "model": "Caloi 2034",
+            "status": "DISPONÍVEL",
+            "year": 2024,
+            "localization": "Rua Fran"
+        },
+        {
+            "id": "68cce4f6-085b-4d36-b7cf-89a0e2a17b26",
             "brand": "Caloi",
             "model": "Caloi 2034",
             "year": 2024,
@@ -24,11 +54,38 @@
             "model": "Tranca Maneira",
             "localization": "Rua Raul Pompeia",
             "status": "OCUPADA"
+        },
+        {
+            "id": "b0702769-a6a3-4127-bd58-7e1580505cc3",
+            "year": 2035,
+            "model": "Tranca Maneira",
+            "localization": "Rua Raul Pompeia",
+            "status": "DISPONÍVEL"
+        },
+        {
+            "id": "b0702769-a6a3-4127-bd58-7e1580505cc4",
+            "year": 2035,
+            "model": "Tranca Maneira",
+            "localization": "Rua Raul Pompeia",
+            "status": "OCUPADA"
+        },
+        {
+            "id": "b0702769-a6a3-4127-bd58-7e1580505ccc",
+            "year": 2035,
+            "model": "Tranca Maneira",
+            "localization": "Rua Raul Pompeia",
+            "status": "OCUPADA"
+        }
+    ],
+    "rel_tranca_bicicleta": [
+        {
+            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505cc4",
+            "idBicicleta": "9c3c44c5-313a-4e04-9636-89aca282b1a3"
         }
     ],
     "tb_totem": [
         {
-            "id": "82c0856b-5216-41f4-9386-85dc1dc848b4",
+            "id": "b3b6de58-ffc1-4fcf-b077-943e37b9ed15",
             "localization": "Rua Fran"
         }
     ]

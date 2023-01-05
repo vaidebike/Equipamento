@@ -39,11 +39,31 @@ describe('Bike controller', () => {
 
   db.delete('/tb_bicicleta');
   db.delete('/tb_tranca');
+  db.delete('/rel_tranca_bicicleta');
 
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
     brand: 'Caloi',
     model: 'Caloi 2034',
+    status: 'NOVA',
+    year: 2024,
+    localization: 'Rua Fran'
+  });
+
+  db.push('/tb_bicicleta[]', {
+    id: '9c3c44c5-313a-4e04-9636-89aca282b1a2',
+    brand: 'Caloi',
+    model: 'Caloi 2034',
+    status: 'REPARO_SOLICITADO',
+    year: 2024,
+    localization: 'Rua Fran'
+  });
+
+  db.push('/tb_bicicleta[]', {
+    id: '9c3c44c5-313a-4e04-9636-89aca282b1a3',
+    brand: 'Caloi',
+    model: 'Caloi 2034',
+    status: 'NOVA',
     year: 2024,
     localization: 'Rua Fran'
   });
@@ -54,6 +74,27 @@ describe('Bike controller', () => {
     model: 'Tranca Maneira',
     localization: 'Rua Raul Pompeia',
     status: 'OCUPADA'
+  });
+
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'OCUPADA'
+  });
+
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505cc4',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'DISPONÍVEL'
+  });
+
+  db.push('/rel_tranca_bicicleta[]', {
+    idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
+    idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1a2'
   });
 
   it('should get all bikes', async () => {
@@ -191,14 +232,14 @@ describe('Bike controller', () => {
     const req = getMockReq();
 
     req.body = {
-      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-      idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1aa'
+      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc4',
+      idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1a3'
     };
 
     mockRepository.addRelBikeToLock.mockReturnValue([
       {
-        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1aa'
+        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc4',
+        idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1a3'
       }
     ]);
 
@@ -482,15 +523,15 @@ describe('Bike controller', () => {
     const req = getMockReq();
 
     req.body = {
-      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-      idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
+      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
+      idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1a2',
       acao: 'EM_REPARO'
     };
 
     mockRepository.deleteRelBikeToLock.mockReturnValue([
       {
-        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1aa'
+        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
+        idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1a2'
       }
     ]);
 

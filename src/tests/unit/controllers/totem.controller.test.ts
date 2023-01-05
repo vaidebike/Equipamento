@@ -35,6 +35,19 @@ describe('Totem controller', () => {
     localization: 'Rua Francisco'
   });
 
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'OCUPADA'
+  });
+
+  db.push('/rel_totem_tranca[]', {
+    idTotem: '1bd9d5db-702d-4754-8260-e5d4586a2626',
+    idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc'
+  });
+
   const { clearMockRes } = getMockRes();
 
   beforeEach(() => {
@@ -65,11 +78,11 @@ describe('Totem controller', () => {
     const { res } = getMockRes();
     const req = getMockReq();
 
-    req.params.id = 'e06e93ff-04e7-4d03-90be-38d765c395a8';
+    req.params.id = '1bd9d5db-702d-4754-8260-e5d4586a2626';
 
     mockRepository.getLocksAtTotem.mockReturnValue([
       {
-        id: 'f706cd60-cfd5-43e5-9d98-f55067a8b80e',
+        id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
         year: 2055,
         model: 'Tranca 2055',
         localization: 'Rua Tonelero',

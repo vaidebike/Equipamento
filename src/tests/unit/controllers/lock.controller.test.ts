@@ -40,6 +40,8 @@ describe('Lock controller', () => {
   db.delete('/tb_bicicleta');
   db.delete('/tb_tranca');
 
+  db.delete('/rel_totem_tranca');
+
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
     brand: 'Caloi',
@@ -56,9 +58,58 @@ describe('Lock controller', () => {
     status: 'OCUPADA'
   });
 
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'NOVA'
+  });
+
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505cc5',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'REPARO_SOLICITADO'
+  });
+
   db.push('/tb_totem[]', {
-    id: '  8628961d-82c2-44b5-9927-5aabb5c4de65',
+    id: '8628961d-82c2-44b5-9927-5aabb5c4de65',
     localization: 'Rua Tonelero'
+  });
+
+  db.push('/tb_totem[]', {
+    id: '8628961d-82c2-44b5-9927-5aabb5c4de66',
+    localization: 'Rua Tonelero'
+  });
+
+  db.push('/tb_totem[]', {
+    id: '8628961d-82c2-44b5-9927-5aabb5c4de67',
+    localization: 'Rua Tonelero'
+  });
+
+  db.push('/rel_totem_tranca[]', {
+    idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de67',
+    idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc4'
+  });
+
+  db.push('/tb_totem[]', {
+    id: '8628961d-82c2-44b5-9927-5aabb5c4de68',
+    localization: 'Rua Tonelero'
+  });
+
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505cc8',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'REPARO_SOLICITADO'
+  });
+
+  db.push('/rel_totem_tranca[]', {
+    idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de68',
+    idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc8'
   });
 
   it('should create a lock', async () => {
@@ -434,14 +485,14 @@ describe('Lock controller', () => {
     const req = getMockReq();
 
     req.body = {
-      idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de65',
-      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc'
+      idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de66',
+      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc3'
     };
 
     mockRepository.addRelLockToTotem.mockReturnValue([
       {
-        idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de65',
-        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc'
+        idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de66',
+        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc3'
       }
     ]);
 
@@ -508,15 +559,15 @@ describe('Lock controller', () => {
     const req = getMockReq();
 
     req.body = {
-      idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de65',
-      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
+      idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de68',
+      idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc8',
       acao: 'EM_REPARO'
     };
 
     mockRepository.deleteRelLockToTotem.mockReturnValue([
       {
-        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b1aa'
+        idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de68',
+        idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc8'
       }
     ]);
 
