@@ -143,6 +143,24 @@ export const getBikes = async (db: any): Promise<any | null> => {
   return allBikes;
 };
 
+export const getBikeRentedByCyclist = async (
+  db: any,
+  cyclistId: string
+): Promise<any | null> => {
+  // INTEGRAR COM MICROSSERVICO DE ALUGUEL
+
+  const bike = {
+    id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    marca: 'Marca Teste',
+    modelo: 'Modelo Teste',
+    ano: 'Ano Teste',
+    numero: 0,
+    status: 'DISPONIVEL'
+  };
+
+  return bike;
+};
+
 export const getBike = async (db: any, id: string): Promise<any | null> => {
   const bikeIndex = await db.getIndex('/tb_bicicleta', id);
 

@@ -1,80 +1,73 @@
 {
-    "tb_totem": [
-        {
-            "id": "8628961d-82c2-44b5-9927-5aabb5c4de65",
-            "localization": "Rua Francisco Otaviano"
-        },
-        {
-            "id": "caef64bf-df02-4f45-801f-bb95bac8b36e",
-            "localization": "Rua Anita Garibaldi"
-        },
-        {
-            "id": "d442b9b3-3f69-46a0-a110-d398e3877638",
-            "localization": "Rua Bolivar"
-        },
-        {
-            "id": "74f5ac62-dc10-4396-9f24-b186b248c647",
-            "localization": "Rua Fran"
-        }
-    ],
     "tb_tranca": [
         {
-            "id": "f706cd60-cfd5-43e5-9d98-f55067a8b80e",
-            "year": 2055,
-            "model": "Tranca 2055",
-            "localization": "Rua Tonelero",
-            "status": "OCUPADA"
-        },
-        {
-            "id": "b56f8b02-a993-4395-8711-9ce939be86c3",
-            "year": 2023,
-            "model": "Tranca Top",
-            "localization": "Rua Barata Ribeiro",
-            "status": "DISPONÍVEL"
-        },
-        {
-            "id": "758acda8-8e59-4c2d-ad0e-1c5064cf027f",
-            "year": 2025,
-            "model": "Tranca Ruim",
-            "localization": "Rua Rainha Elizabeth",
-            "status": "NOVA"
-        },
-        {
-            "id": "b0702769-a6a3-4127-bd58-7e1580505ccc",
+            "id": "72ebacd9-2a4b-4f11-9b98-98351ff5d095",
             "year": 2035,
             "model": "Tranca Maneira",
             "localization": "Rua Raul Pompeia",
             "status": "OCUPADA"
+        },
+        {
+            "id": "36d3a6cb-cc8c-4ba4-86f6-3237a464d14b",
+            "year": 2035,
+            "model": "Tranca Legal",
+            "localization": "Rua Tonelero",
+            "status": "OCUPADA"
+        },
+        {
+            "id": "9bebbc25-a6c0-49ce-8074-c0b17837273f",
+            "year": 2035,
+            "model": "Tranca RUIM",
+            "localization": "Rua Francisco Otaviano",
+            "status": "DISPONÍVEL"
+        }
+    ],
+    "tb_totem": [
+        {
+            "id": "55d0e57b-f708-44e6-a5e3-56b60ff137f1",
+            "localization": "Rua Bolivar"
+        },
+        {
+            "id": "f965adfa-82b6-4452-8a5c-c76a620422f0",
+            "localization": "Rua Otavio Lemos"
         }
     ],
     "rel_totem_tranca": [
         {
-            "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de65",
-            "idTranca": "f706cd60-cfd5-43e5-9d98-f55067a8b80e"
+            "idTotem": "55d0e57b-f708-44e6-a5e3-56b60ff137f1",
+            "idTranca": "9bebbc25-a6c0-49ce-8074-c0b17837273f"
         },
         {
-            "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de65",
-            "idTranca": "b56f8b02-a993-4395-8711-9ce939be86c3"
+            "idTotem": "55d0e57b-f708-44e6-a5e3-56b60ff137f1",
+            "idTranca": "36d3a6cb-cc8c-4ba4-86f6-3237a464d14b"
         },
         {
-            "idTotem": "d442b9b3-3f69-46a0-a110-d398e3877638",
-            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505ccc"
+            "idTotem": "55d0e57b-f708-44e6-a5e3-56b60ff137f1",
+            "idTranca": "72ebacd9-2a4b-4f11-9b98-98351ff5d095"
         }
     ],
     "tb_bicicleta": [
         {
-            "id": "9c3c44c5-313a-4e04-9636-89aca282b1aa",
+            "id": "4fd2dca8-744c-421e-901d-ccd98ee01874",
             "brand": "Calor",
             "model": "Caloi 2034",
             "year": 2024,
             "status": "DISPONÍVEL",
             "localization": "Rua Fran"
+        },
+        {
+            "id": "4941f693-7af5-48d0-b86f-a796e7aeab3c",
+            "brand": "Calor",
+            "model": "Caloi 2034",
+            "year": 2024,
+            "status": "EM_USO",
+            "localization": "Rua Barata Ribeiro"
         }
     ],
     "rel_tranca_bicicleta": [
         {
-            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505ccc",
-            "idBicicleta": "9c3c44c5-313a-4e04-9636-89aca282b1aa"
+            "idTranca": "72ebacd9-2a4b-4f11-9b98-98351ff5d095",
+            "idBicicleta": "4fd2dca8-744c-421e-901d-ccd98ee01874"
         }
     ]
 }

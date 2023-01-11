@@ -26,6 +26,10 @@ router
     bikeController.excludeBike(req, res);
   });
 
+router.route('/alugadaPor/:id').get(function (req, res) {
+  bikeController.bikeRentedBy(req, res);
+});
+
 router.route('/:id/status/:acao').post(function (req, res) {
   bikeController.changeStatus(req, res);
 });

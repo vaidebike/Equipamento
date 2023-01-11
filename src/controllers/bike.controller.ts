@@ -13,7 +13,8 @@ import {
   updateBikes,
   updateBikeStatus,
   addRelBikeToLock,
-  deleteRelBikeToLock
+  deleteRelBikeToLock,
+  getBikeRentedByCyclist
 } from '../services/bike.service';
 
 import { StatusEnum } from '../models/Bike';
@@ -24,6 +25,15 @@ export const listBikes = async (
 ): Promise<any | null> => {
   const bikes = await getBikes(db);
   return ok(res, bikes);
+};
+
+export const bikeRentedBy = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  const { id } = req.params;
+  const bike = await getBikeRentedByCyclist(db, id);
+  return ok(res, bike);
 };
 
 export const listBike = async (

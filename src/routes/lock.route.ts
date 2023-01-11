@@ -23,8 +23,16 @@ router.route('/retirarDaRede').post(function (req, res) {
   lockController.removeFromVaDeBike(req, res);
 });
 
-router.route('/DELETARBANCO').delete(function () {
-  lockController.deleteBD();
+router.route('/:id/trancar').post(function (req, res) {
+  lockController.lockLock(req, res);
+});
+
+router.route('/:id/destrancar').post(function (req, res) {
+  lockController.unlockLock(req, res);
+});
+
+router.route('/:id/bicicleta').get(function (req, res) {
+  lockController.getBikeAtLock(req, res);
 });
 
 router

@@ -39,6 +39,38 @@ export const getLock = async (db: any, id: string): Promise<any | null> => {
   return lock;
 };
 
+export const getBikeAtLockRel = async (
+  db: any,
+  idTranca: string
+): Promise<any | null> => {
+  const lockIndex = await db.getIndex('/tb_tranca', idTranca);
+  if (lockIndex === -1) {
+    return -1;
+  }
+
+  const lockIndexOnRel = await db.getIndex(
+    '/rel_tranca_bicicleta',
+    idTranca,
+    'idTranca'
+  );
+
+  if (lockIndexOnRel === -1) {
+    return -500;
+  }
+
+  const relLockBike = await db.getData(
+    `/rel_tranca_bicicleta[${lockIndexOnRel}]`
+  );
+
+  const bikeId = relLockBike.idBicicleta;
+
+  const bikeIndex = await db.getIndex('/tb_bicicleta', bikeId);
+
+  const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
+
+  return bike;
+};
+
 export const updateLocks = async (
   db: any,
   year: number,
@@ -62,6 +94,124 @@ export const updateLocks = async (
   await db.push(`/tb_tranca[${lockIndex}]/localization`, newLocalization, true);
 
   const lock = await db.getData(`/tb_tranca[${lockIndex}]`);
+  return lock;
+};
+
+export const postLocklock = async (
+  db: any,
+  idTranca: string,
+  idBicicleta: string
+): Promise<any | null> => {
+  if (idBicicleta !== null && idBicicleta !== undefined) {
+    const lockIndex = await db.getIndex('/tb_tranca', idTranca);
+    const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
+    if (lockIndex === -1) {
+      return -1;
+    }
+
+    const lock = await db.getData(`/tb_tranca[${lockIndex}]`);
+
+    if (lock.status === 'OCUPADA') {
+      return -200;
+    }
+
+    if (lock.status !== 'DISPONÍVEL') {
+      return -400;
+    }
+
+    if (bikeIndex === -1) {
+      return -1;
+    }
+
+    const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
+
+    if (
+      bike.status !== 'EM_USO' &&
+      bike.status !== 'EM_REPARO' &&
+      bike.status !== 'NOVA'
+    ) {
+      return -300;
+    }
+
+    const bikeIndexOnRel = await db.getIndex(
+      '/rel_tranca_bicicleta',
+      idBicicleta,
+      'idBicicleta'
+    );
+
+    if (bikeIndexOnRel !== -1) {
+      return -600;
+    }
+
+    await db.push(`/tb_tranca[${lockIndex}]/status`, 'OCUPADA', true);
+
+    await db.push(`/tb_bicicleta[${bikeIndex}]/status`, 'DISPONÍVEL', true);
+
+    await db.push('/rel_tranca_bicicleta[]', {
+      idTranca,
+      idBicicleta
+    });
+
+    return lock;
+  } else {
+    const lockIndex = await db.getIndex('/tb_tranca', idTranca);
+
+    if (lockIndex === -1) {
+      return -1;
+    }
+
+    const lock = await db.getData(`/tb_tranca[${lockIndex}]`);
+
+    if (lock.status === 'OCUPADA') {
+      return -200;
+    }
+
+    if (lock.status !== 'DISPONÍVEL') {
+      return -400;
+    }
+
+    await db.push(`/tb_tranca[${lockIndex}]/status`, 'OCUPADA', true);
+
+    return lock;
+  }
+};
+
+export const postUnlocklock = async (
+  db: any,
+  idTranca: string
+): Promise<any | null> => {
+  const lockIndex = await db.getIndex('/tb_tranca', idTranca);
+
+  if (lockIndex === -1) {
+    return -1;
+  }
+
+  const lock = await db.getData(`/tb_tranca[${lockIndex}]`);
+
+  if (lock.status !== 'OCUPADA') {
+    return -200;
+  }
+
+  const lockIndexOnRel = await db.getIndex(
+    '/rel_tranca_bicicleta',
+    idTranca,
+    'idTranca'
+  );
+
+  const lockOnRel = await db.getData(
+    `/rel_tranca_bicicleta[${lockIndexOnRel}]`
+  );
+
+  const idBicicleta = lockOnRel.idBicicleta;
+
+  const bikeIndex = await db.getIndex('/tb_tranca', idBicicleta);
+
+  await db.push(`/tb_bicicleta[${bikeIndex}]/status`, 'EM_USO', true);
+
+  await db.push(`/tb_tranca[${lockIndex}]/status`, 'DISPONÍVEL', true);
+
+  await db.delete(`/rel_tranca_bicicleta[${lockIndexOnRel}]`);
+
   return lock;
 };
 

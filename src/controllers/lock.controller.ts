@@ -14,7 +14,10 @@ import {
   deleteLock,
   updateLockStatus,
   addRelLockToTotem,
-  deleteRelLockToTotem
+  deleteRelLockToTotem,
+  getBikeAtLockRel,
+  postLocklock,
+  postUnlocklock
 } from '../services/lock.service';
 
 import { StatusEnum } from '../models/Lock';
@@ -53,9 +56,40 @@ export const listLock = async (
 ): Promise<any | null> => {
   const { id } = req.params;
 
+  if (!id) {
+    return badRequest(res, 'Missing required fields');
+  } else if (typeof id !== 'string') {
+    return badRequest(res, 'Invalid fields');
+  }
+
   const lock = await getLock(db, id);
   if (lock === -1) {
     return notFound(res, 'Lock not found');
+  }
+
+  return ok(res, lock);
+};
+
+export const getBikeAtLock = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  const { id } = req.params;
+
+  if (!id) {
+    return badRequest(res, 'Missing required fields');
+  } else if (typeof id !== 'string') {
+    return badRequest(res, 'Invalid fields');
+  }
+
+  const lock = await getBikeAtLockRel(db, id);
+
+  if (lock === -1) {
+    return notFound(res, 'Lock not found');
+  }
+
+  if (lock === -500) {
+    return badRequest(res, 'Lock without a bike');
   }
 
   return ok(res, lock);
@@ -82,6 +116,71 @@ export const updateLock = async (
 
   if (lock === -1) {
     return notFound(res, 'Lock not found');
+  }
+
+  return ok(res, lock);
+};
+
+export const lockLock = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  const { id } = req.params;
+  const { bicicleta } = req.body;
+
+  if (!id) {
+    return badRequest(res, 'Missing required fields');
+  } else if (
+    typeof id !== 'string' ||
+    (bicicleta !== undefined && typeof bicicleta !== 'string')
+  ) {
+    return badRequest(res, 'Invalid fields');
+  }
+
+  const lock = await postLocklock(db, id, bicicleta);
+
+  if (lock === -1) {
+    return notFound(res, 'Lock or bike not found');
+  }
+  if (lock === -200) {
+    return badRequest(res, 'Lock already occupied');
+  }
+  if (lock === -300) {
+    return badRequest(
+      res,
+      'Bicycle must be new, in use or in repair to be returned'
+    );
+  }
+  if (lock === -400) {
+    return badRequest(res, 'Lock must be available');
+  }
+
+  if (lock === -600) {
+    return badRequest(res, 'Bike already belongs to another lock');
+  }
+
+  return ok(res, lock);
+};
+
+export const unlockLock = async (
+  req: Request,
+  res: Response
+): Promise<any | null> => {
+  const { id } = req.params;
+
+  if (!id) {
+    return badRequest(res, 'Missing required fields');
+  } else if (typeof id !== 'string') {
+    return badRequest(res, 'Invalid fields');
+  }
+
+  const lock = await postUnlocklock(db, id);
+
+  if (lock === -1) {
+    return notFound(res, 'Lock or bike not found');
+  }
+  if (lock === -200) {
+    return badRequest(res, 'Lock must be occupied');
   }
 
   return ok(res, lock);
