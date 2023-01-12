@@ -99,6 +99,31 @@ describe('Totem controller', () => {
     );
   });
 
+  it('should return not found if id totem is nonexistent at get all locks related to toten', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = 'a';
+
+    mockRepository.getLocksAtTotem.mockReturnValue([
+      {
+        id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
+        year: 2055,
+        model: 'Tranca 2055',
+        localization: 'Rua Tonelero',
+        status: 'OCUPADA'
+      }
+    ]);
+
+    await listLocks(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'NOT_FOUND'
+      })
+    );
+  });
+
   it('should get all bikes related to toten', async () => {
     const { res } = getMockRes();
     const req = getMockReq();
@@ -149,6 +174,50 @@ describe('Totem controller', () => {
     );
   });
 
+  it('should return bad request if localization isnt a string at create a totem', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.body = {
+      localization: 1
+    };
+
+    mockRepository.createTotem.mockReturnValue([
+      {
+        id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
+        localization: 'Rua Visconde de Pirajá'
+      }
+    ]);
+
+    await registerTotem(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
+  it('should return bad request if localization is missing at create a totem', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    mockRepository.createTotem.mockReturnValue([
+      {
+        id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
+        localization: 'Rua Visconde de Pirajá'
+      }
+    ]);
+
+    await registerTotem(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
   it('should update a totem', async () => {
     const { res } = getMockRes();
     const req = getMockReq();
@@ -171,6 +240,80 @@ describe('Totem controller', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         code: 'OK'
+      })
+    );
+  });
+
+  it('should return bad request if localization is missing at update a totem', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = '1bd9d5db-702d-4754-8260-e5d4586a2626';
+
+    mockRepository.updateTotens.mockReturnValue([
+      {
+        id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
+        localization: 'Rua Francisco'
+      }
+    ]);
+
+    await updateTotem(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
+  it('should return bad request if localization isnt a string at update a totem', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.body = {
+      localization: 1
+    };
+
+    req.params.id = '1bd9d5db-702d-4754-8260-e5d4586a2626';
+
+    mockRepository.updateTotens.mockReturnValue([
+      {
+        id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
+        localization: 'Rua Francisco'
+      }
+    ]);
+
+    await updateTotem(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
+  it('should return not found if id totem is nonexistent at update a totem', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.body = {
+      localization: 'Rua Teste'
+    };
+
+    req.params.id = 'a';
+
+    mockRepository.updateTotens.mockReturnValue([
+      {
+        id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
+        localization: 'Rua Francisco'
+      }
+    ]);
+
+    await updateTotem(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'NOT_FOUND'
       })
     );
   });

@@ -1,4 +1,26 @@
 {
+    "tb_totem": [
+        {
+            "id": "9a801ce6-fc5b-4bec-9f7a-c72af33b3bb3",
+            "localization": "Rua Fran"
+        },
+        {
+            "id": "8628961d-82c2-44b5-9927-5aabb5c4de65",
+            "localization": "Rua Tonelero"
+        },
+        {
+            "id": "8628961d-82c2-44b5-9927-5aabb5c4de66",
+            "localization": "Rua Tonelero"
+        },
+        {
+            "id": "8628961d-82c2-44b5-9927-5aabb5c4de67",
+            "localization": "Rua Tonelero"
+        },
+        {
+            "id": "8628961d-82c2-44b5-9927-5aabb5c4de68",
+            "localization": "Rua Tonelero"
+        }
+    ],
     "rel_totem_tranca": [
         {
             "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de67",
@@ -7,10 +29,6 @@
         {
             "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de66",
             "idTranca": "b0702769-a6a3-4127-bd58-7e1580505cc3"
-        },
-        {
-            "idTotem": "1bd9d5db-702d-4754-8260-e5d4586a2626",
-            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505ccc"
         }
     ],
     "tb_bicicleta": [
@@ -39,7 +57,7 @@
             "localization": "Rua Fran"
         },
         {
-            "id": "e59b589b-252a-4869-96bd-297a3e5f3671",
+            "id": "51f23a1a-afaf-43db-89a4-90195c49ea87",
             "brand": "Caloi",
             "model": "Caloi 2034",
             "year": 2024,
@@ -68,25 +86,12 @@
             "model": "Tranca Maneira",
             "localization": "Rua Raul Pompeia",
             "status": "OCUPADA"
-        },
-        {
-            "id": "b0702769-a6a3-4127-bd58-7e1580505ccc",
-            "year": 2035,
-            "model": "Tranca Maneira",
-            "localization": "Rua Raul Pompeia",
-            "status": "OCUPADA"
         }
     ],
     "rel_tranca_bicicleta": [
         {
             "idTranca": "b0702769-a6a3-4127-bd58-7e1580505cc4",
             "idBicicleta": "9c3c44c5-313a-4e04-9636-89aca282b1a3"
-        }
-    ],
-    "tb_totem": [
-        {
-            "id": "678ccb11-e961-42d4-8cd1-830d4550d79a",
-            "localization": "Rua Fran"
         }
     ]
 }
