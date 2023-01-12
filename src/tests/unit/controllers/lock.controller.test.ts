@@ -14,7 +14,10 @@ import {
   changeLockStatus,
   addLockToVaDeBike,
   removeFromVaDeBike,
-  listLock
+  listLock,
+  getBikeAtLock,
+  lockLock,
+  unlockLock
 } from '../../../controllers/lock.controller';
 
 jest.setTimeout(30000);
@@ -27,7 +30,10 @@ describe('Lock controller', () => {
     deleteLock: jest.fn(),
     updateLockStatus: jest.fn(),
     addRelLockToTotem: jest.fn(),
-    deleteRelLockToTotem: jest.fn()
+    deleteRelLockToTotem: jest.fn(),
+    getBikeAtLockRel: jest.fn(),
+    postLocklock: jest.fn(),
+    postUnlocklock: jest.fn()
   };
   const { clearMockRes } = getMockRes();
 
@@ -50,6 +56,24 @@ describe('Lock controller', () => {
     localization: 'Rua Fran'
   });
 
+  db.push('/tb_bicicleta[]', {
+    id: '9c3c44c5-313a-4e04-9636-89aca282babc',
+    brand: 'Caloi',
+    model: 'Caloi 2034',
+    year: 2024,
+    status: 'DISPONÍVEL',
+    localization: 'Rua Fran'
+  });
+
+  db.push('/tb_bicicleta[]', {
+    id: '9c3c44c5-313a-4e04-9636-89aca282b444',
+    brand: 'Caloi',
+    model: 'Caloi 2034',
+    year: 2024,
+    status: 'DISPONÍVEL',
+    localization: 'Rua Fran'
+  });
+
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
     year: 2035,
@@ -59,11 +83,27 @@ describe('Lock controller', () => {
   });
 
   db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505c67',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'DISPONÍVEL'
+  });
+
+  db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
     year: 2035,
     model: 'Tranca Maneira',
     localization: 'Rua Raul Pompeia',
     status: 'NOVA'
+  });
+
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505cc55',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'OCUPADA'
   });
 
   db.push('/tb_tranca[]', {
@@ -107,9 +147,27 @@ describe('Lock controller', () => {
     status: 'REPARO_SOLICITADO'
   });
 
+  db.push('/tb_tranca[]', {
+    id: 'b0702769-a6a3-4127-bd58-7e1580505c89',
+    year: 2035,
+    model: 'Tranca Maneira',
+    localization: 'Rua Raul Pompeia',
+    status: 'OCUPADA'
+  });
+
   db.push('/rel_totem_tranca[]', {
     idTotem: '8628961d-82c2-44b5-9927-5aabb5c4de68',
     idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc8'
+  });
+
+  db.push('/rel_tranca_bicicleta[]', {
+    idTranca: 'b0702769-a6a3-4127-bd58-7e1580505cc55',
+    idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282babc'
+  });
+
+  db.push('/rel_tranca_bicicleta[]', {
+    idTranca: 'b0702769-a6a3-4127-bd58-7e1580505c89',
+    idBicicleta: '9c3c44c5-313a-4e04-9636-89aca282b444'
   });
 
   it('should create a lock', async () => {
@@ -227,6 +285,228 @@ describe('Lock controller', () => {
     );
   });
 
+  it('should lock a lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = 'b0702769-a6a3-4127-bd58-7e1580505c67';
+
+    mockRepository.postLocklock.mockReturnValue([
+      {
+        id: 'b0702769-a6a3-4127-bd58-7e1580505c67',
+        year: 2035,
+        model: 'Tranca Maneira',
+        localization: 'Rua Raul Pompeia',
+        status: 'OCUPADA'
+      }
+    ]);
+
+    await lockLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'OK'
+      })
+    );
+  });
+
+  it('should unlock a lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = 'b0702769-a6a3-4127-bd58-7e1580505c89';
+
+    mockRepository.postUnlocklock.mockReturnValue([
+      {
+        id: 'b0702769-a6a3-4127-bd58-7e1580505c89',
+        year: 2035,
+        model: 'Tranca Maneira',
+        localization: 'Rua Raul Pompeia',
+        status: 'DISPONÍVEL'
+      }
+    ]);
+
+    await unlockLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'OK'
+      })
+    );
+  });
+
+  it('should return bad request if idlock is missing at unlock a lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    mockRepository.postUnlocklock.mockReturnValue([
+      {
+        id: 'b0702769-a6a3-4127-bd58-7e1580505c89',
+        year: 2035,
+        model: 'Tranca Maneira',
+        localization: 'Rua Raul Pompeia',
+        status: 'DISPONÍVEL'
+      }
+    ]);
+
+    await unlockLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
+  it('should return bad request if lock is already occupied at lock a lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = 'b0702769-a6a3-4127-bd58-7e1580505ccc';
+
+    mockRepository.postLocklock.mockReturnValue([
+      {
+        id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
+        year: 2035,
+        model: 'Tranca Maneira',
+        localization: 'Rua Raul Pompeia',
+        status: 'OCUPADA'
+      }
+    ]);
+
+    await lockLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
+  it('should return not found if id lock is nonexistent at lock a lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = 'a';
+
+    mockRepository.postLocklock.mockReturnValue([
+      {
+        id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
+        year: 2035,
+        model: 'Tranca Maneira',
+        localization: 'Rua Raul Pompeia',
+        status: 'OCUPADA'
+      }
+    ]);
+
+    await lockLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'NOT_FOUND'
+      })
+    );
+  });
+
+  it('should return bad request if id lock is missing at lock a lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    mockRepository.postLocklock.mockReturnValue([
+      {
+        id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
+        year: 2035,
+        model: 'Tranca Maneira',
+        localization: 'Rua Raul Pompeia',
+        status: 'OCUPADA'
+      }
+    ]);
+
+    await lockLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
+  it('should get bike at lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = 'b0702769-a6a3-4127-bd58-7e1580505cc55';
+
+    mockRepository.getBikeAtLockRel.mockReturnValue([
+      {
+        id: '4941f693-7af5-48d0-b86f-a796e7aeab3c',
+        brand: 'Calor',
+        model: 'Caloi 2034',
+        year: 2024,
+        status: 'DISPONÍVEL',
+        localization: 'Rua Barata Ribeiro'
+      }
+    ]);
+
+    await getBikeAtLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'OK'
+      })
+    );
+  });
+
+  it('should return not found if id lock is not registred at get bike at lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    req.params.id = 'a';
+
+    mockRepository.getBikeAtLockRel.mockReturnValue([
+      {
+        id: '4941f693-7af5-48d0-b86f-a796e7aeab3c',
+        brand: 'Calor',
+        model: 'Caloi 2034',
+        year: 2024,
+        status: 'DISPONÍVEL',
+        localization: 'Rua Barata Ribeiro'
+      }
+    ]);
+
+    await getBikeAtLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'NOT_FOUND'
+      })
+    );
+  });
+
+  it('should return bad request if idlock is missing at get bike at lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    mockRepository.getBikeAtLockRel.mockReturnValue([
+      {
+        id: '4941f693-7af5-48d0-b86f-a796e7aeab3c',
+        brand: 'Calor',
+        model: 'Caloi 2034',
+        year: 2024,
+        status: 'DISPONÍVEL',
+        localization: 'Rua Barata Ribeiro'
+      }
+    ]);
+
+    await getBikeAtLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
+      })
+    );
+  });
+
   it('should return not found id lock id nonexistent at get a lock', async () => {
     const { res } = getMockRes();
     const req = getMockReq();
@@ -248,6 +528,29 @@ describe('Lock controller', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         code: 'NOT_FOUND'
+      })
+    );
+  });
+
+  it('should return bad request lock if id is missing at get a lock', async () => {
+    const { res } = getMockRes();
+    const req = getMockReq();
+
+    mockRepository.getLock.mockReturnValue([
+      {
+        id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
+        year: 2035,
+        model: 'Tranca Maneira',
+        localization: 'Rua Raul Pompeia',
+        status: 'OCUPADA'
+      }
+    ]);
+
+    await listLock(req as Request, res as Response);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'BAD_REQUEST_ERROR'
       })
     );
   });
