@@ -7,11 +7,13 @@ import {
   getLock,
   updateLocks,
   deleteLock,
-  updateLockStatus
+  updateLockStatus,
+  postLocklock
 } from '../../../services/lock.service';
 import { Lock } from '../../../models/Lock';
 
 import { v4 as uuid } from 'uuid';
+import { Bike } from '../../../models/Bike';
 
 describe('Lock service', () => {
   const mockDB = {
@@ -116,6 +118,37 @@ describe('Lock service', () => {
     const lock = await deleteLock(mockDB, 'invalidID');
 
     expect(lock).toEqual(-1);
+  });
+
+  it('should return -300 if bike status it isnt new, in use or in repair at lock a lock', async () => {
+    const newLock = new Lock();
+
+    const newBike = new Bike();
+    const newLockID = uuid();
+
+    const newBikeID = uuid();
+
+    newLock.id = newLockID;
+    newLock.model = 'Tranca 10';
+    newLock.year = 2021;
+    newLock.localization = 'Praça I';
+    newLock.status = 'DISPONÍVEL';
+
+    newBike.id = newBikeID;
+    newBike.model = 'Tranca 10';
+    newBike.year = 2021;
+    newBike.localization = 'Praça I';
+    newBike.status = 'REPARO_SOLICITADO';
+
+    mockDB.getIndex.mockReturnValue(0);
+    mockDB.getIndex.mockReturnValue(0);
+    mockDB.getData.mockReturnValue(newLock);
+
+    mockDB.getIndex.mockReturnValue(0);
+
+    const lock = await postLocklock(mockDB, newLockID, newBikeID);
+
+    expect(lock).toBe(-300);
   });
 
   it('should update a lock', async () => {
