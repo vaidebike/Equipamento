@@ -50,83 +50,83 @@ describe('Lock controller', () => {
 
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-    brand: 'Caloi',
-    model: 'Caloi 2034',
-    year: 2024,
-    localization: 'Rua Fran'
+    marca: 'Caloi',
+    modelo: 'Caloi 2034',
+    ano: 2024,
+    localizacao: 'Rua Fran'
   });
 
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282babc',
-    brand: 'Caloi',
-    model: 'Caloi 2034',
-    year: 2024,
+    marca: 'Caloi',
+    modelo: 'Caloi 2034',
+    ano: 2024,
     status: 'DISPONÍVEL',
-    localization: 'Rua Fran'
+    localizacao: 'Rua Fran'
   });
 
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282b444',
-    brand: 'Caloi',
-    model: 'Caloi 2034',
-    year: 2024,
+    marca: 'Caloi',
+    modelo: 'Caloi 2034',
+    ano: 2024,
     status: 'DISPONÍVEL',
-    localization: 'Rua Fran'
+    localizacao: 'Rua Fran'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'OCUPADA'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505c67',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'DISPONÍVEL'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'NOVA'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505cc55',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'OCUPADA'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505cc5',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'REPARO_SOLICITADO'
   });
 
   db.push('/tb_totem[]', {
     id: '8628961d-82c2-44b5-9927-5aabb5c4de65',
-    localization: 'Rua Tonelero'
+    localizacao: 'Rua Tonelero'
   });
 
   db.push('/tb_totem[]', {
     id: '8628961d-82c2-44b5-9927-5aabb5c4de66',
-    localization: 'Rua Tonelero'
+    localizacao: 'Rua Tonelero'
   });
 
   db.push('/tb_totem[]', {
     id: '8628961d-82c2-44b5-9927-5aabb5c4de67',
-    localization: 'Rua Tonelero'
+    localizacao: 'Rua Tonelero'
   });
 
   db.push('/rel_totem_tranca[]', {
@@ -136,22 +136,22 @@ describe('Lock controller', () => {
 
   db.push('/tb_totem[]', {
     id: '8628961d-82c2-44b5-9927-5aabb5c4de68',
-    localization: 'Rua Tonelero'
+    localizacao: 'Rua Tonelero'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505cc8',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'REPARO_SOLICITADO'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505c89',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'OCUPADA'
   });
 
@@ -175,19 +175,19 @@ describe('Lock controller', () => {
     const req = getMockReq();
 
     req.body = {
-      model: 'Lock 2034',
-      year: 2024,
-      localization: 'Rua Fran'
+      modelo: 'Lock 2034',
+      ano: 2024,
+      localizacao: 'Rua Fran'
     };
 
     mockRepository.createLock.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'EM_USO',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -205,9 +205,9 @@ describe('Lock controller', () => {
     const req = getMockReq();
 
     req.body = {
-      model: 'Lock 2034',
-      year: '2024',
-      localization: 'Rua Fran'
+      modelo: 'Lock 2034',
+      ano: '2024',
+      localizacao: 'Rua Fran'
     };
 
     await registerLock(req as Request, res as Response);
@@ -224,8 +224,8 @@ describe('Lock controller', () => {
     const req = getMockReq();
 
     req.body = {
-      model: 'Lock 2034',
-      year: 2024
+      modelo: 'Lock 2034',
+      ano: 2024
     };
 
     await registerLock(req as Request, res as Response);
@@ -244,10 +244,10 @@ describe('Lock controller', () => {
     mockRepository.getLocks.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3285',
-        model: 'Lock 2034',
-        year: 2024,
+        modelo: 'Lock 2034',
+        ano: 2024,
         status: 'TRANCADA',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -269,9 +269,9 @@ describe('Lock controller', () => {
     mockRepository.getLock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -294,9 +294,9 @@ describe('Lock controller', () => {
     mockRepository.postLocklock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505c67',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -319,9 +319,9 @@ describe('Lock controller', () => {
     mockRepository.postUnlocklock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505c89',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'DISPONÍVEL'
       }
     ]);
@@ -342,9 +342,9 @@ describe('Lock controller', () => {
     mockRepository.postUnlocklock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505c89',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'DISPONÍVEL'
       }
     ]);
@@ -367,9 +367,9 @@ describe('Lock controller', () => {
     mockRepository.postLocklock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -392,9 +392,9 @@ describe('Lock controller', () => {
     mockRepository.postLocklock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -415,9 +415,9 @@ describe('Lock controller', () => {
     mockRepository.postLocklock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -440,11 +440,11 @@ describe('Lock controller', () => {
     mockRepository.getBikeAtLockRel.mockReturnValue([
       {
         id: '4941f693-7af5-48d0-b86f-a796e7aeab3c',
-        brand: 'Calor',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Calor',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'DISPONÍVEL',
-        localization: 'Rua Barata Ribeiro'
+        localizacao: 'Rua Barata Ribeiro'
       }
     ]);
 
@@ -466,11 +466,11 @@ describe('Lock controller', () => {
     mockRepository.getBikeAtLockRel.mockReturnValue([
       {
         id: '4941f693-7af5-48d0-b86f-a796e7aeab3c',
-        brand: 'Calor',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Calor',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'DISPONÍVEL',
-        localization: 'Rua Barata Ribeiro'
+        localizacao: 'Rua Barata Ribeiro'
       }
     ]);
 
@@ -490,11 +490,11 @@ describe('Lock controller', () => {
     mockRepository.getBikeAtLockRel.mockReturnValue([
       {
         id: '4941f693-7af5-48d0-b86f-a796e7aeab3c',
-        brand: 'Calor',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Calor',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'DISPONÍVEL',
-        localization: 'Rua Barata Ribeiro'
+        localizacao: 'Rua Barata Ribeiro'
       }
     ]);
 
@@ -516,9 +516,9 @@ describe('Lock controller', () => {
     mockRepository.getLock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -539,9 +539,9 @@ describe('Lock controller', () => {
     mockRepository.getLock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -562,18 +562,18 @@ describe('Lock controller', () => {
     req.params.id = 'b0702769-a6a3-4127-bd58-7e1580505ccc';
 
     req.body = {
-      year: 2035,
-      model: 'Tranca Maneira',
-      localization: 'Rua Raul Pompeia',
+      ano: 2035,
+      modelo: 'Tranca Maneira',
+      localizacao: 'Rua Raul Pompeia',
       status: 'OCUPADA'
     };
 
     mockRepository.updateLocks.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -594,15 +594,15 @@ describe('Lock controller', () => {
     req.params.id = 'b0702769-a6a3-4127-bd58-7e1580505ccc';
 
     req.body = {
-      year: 2035
+      ano: 2035
     };
 
     mockRepository.updateLocks.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -623,18 +623,18 @@ describe('Lock controller', () => {
     req.params.id = 'b0702769-a6a3-4127-bd58-7e1580505ccc';
 
     req.body = {
-      year: '2035',
-      model: 'Tranca Maneira',
-      localization: 'Rua Raul Pompeia',
+      ano: '2035',
+      modelo: 'Tranca Maneira',
+      localizacao: 'Rua Raul Pompeia',
       status: 'OCUPADA'
     };
 
     mockRepository.updateLocks.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -655,18 +655,18 @@ describe('Lock controller', () => {
     req.params.id = 'a';
 
     req.body = {
-      year: 2035,
-      model: 'Tranca Maneira',
-      localization: 'Rua Raul Pompeia',
+      ano: 2035,
+      modelo: 'Tranca Maneira',
+      localizacao: 'Rua Raul Pompeia',
       status: 'OCUPADA'
     };
 
     mockRepository.updateLocks.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -689,9 +689,9 @@ describe('Lock controller', () => {
     mockRepository.deleteLock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);
@@ -715,9 +715,9 @@ describe('Lock controller', () => {
     mockRepository.updateLockStatus.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'REPARO_SOLICITADO'
       }
     ]);
@@ -741,9 +741,9 @@ describe('Lock controller', () => {
     mockRepository.updateLockStatus.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'REPARO_SOLICITADO'
       }
     ]);
@@ -767,9 +767,9 @@ describe('Lock controller', () => {
     mockRepository.updateLockStatus.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'REPARO_SOLICITADO'
       }
     ]);
@@ -892,9 +892,9 @@ describe('Lock controller', () => {
     mockRepository.deleteLock.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        year: 2035,
-        model: 'Tranca Maneira',
-        localization: 'Rua Raul Pompeia',
+        ano: 2035,
+        modelo: 'Tranca Maneira',
+        localizacao: 'Rua Raul Pompeia',
         status: 'OCUPADA'
       }
     ]);

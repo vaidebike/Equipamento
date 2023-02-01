@@ -6,13 +6,13 @@ import { v4 as uuid } from 'uuid';
 
 export const createTotem = async (
   db: any,
-  localization: string
+  localizacao: string
 ): Promise<any | null> => {
   const newTotemID = uuid();
 
   await db.push('/tb_totem[]', {
     id: newTotemID,
-    localization
+    localizacao
   });
 
   const totemCreatedIndex = await db.getIndex('/tb_totem', newTotemID);
@@ -78,7 +78,7 @@ export const getLocksAtTotem = async (
 
 export const updateTotens = async (
   db: any,
-  localization: string,
+  localizacao: string,
   id: string
 ): Promise<any | null> => {
   const totemIndex = await db.getIndex('/tb_totem', id);
@@ -87,8 +87,8 @@ export const updateTotens = async (
     return -1;
   }
 
-  const newLocalization = localization;
-  await db.push(`/tb_totem[${totemIndex}]/localization`, newLocalization, true);
+  const newlocalizacao = localizacao;
+  await db.push(`/tb_totem[${totemIndex}]/localizacao`, newlocalizacao, true);
 
   const totem = await db.getData(`/tb_totem[${totemIndex}]`);
   return totem;

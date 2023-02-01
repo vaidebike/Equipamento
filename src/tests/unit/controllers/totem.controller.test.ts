@@ -32,14 +32,14 @@ describe('Totem controller', () => {
 
   db.push('/tb_totem[]', {
     id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-    localization: 'Rua Francisco'
+    localizacao: 'Rua Francisco'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'OCUPADA'
   });
 
@@ -61,7 +61,7 @@ describe('Totem controller', () => {
     mockRepository.getTotens.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -83,9 +83,9 @@ describe('Totem controller', () => {
     mockRepository.getLocksAtTotem.mockReturnValue([
       {
         id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-        year: 2055,
-        model: 'Tranca 2055',
-        localization: 'Rua Tonelero',
+        ano: 2055,
+        modelo: 'Tranca 2055',
+        localizacao: 'Rua Tonelero',
         status: 'OCUPADA'
       }
     ]);
@@ -108,9 +108,9 @@ describe('Totem controller', () => {
     mockRepository.getLocksAtTotem.mockReturnValue([
       {
         id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-        year: 2055,
-        model: 'Tranca 2055',
-        localization: 'Rua Tonelero',
+        ano: 2055,
+        modelo: 'Tranca 2055',
+        localizacao: 'Rua Tonelero',
         status: 'OCUPADA'
       }
     ]);
@@ -133,11 +133,11 @@ describe('Totem controller', () => {
     mockRepository.getBikesAtTotem.mockReturnValue([
       {
         id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-        brand: 'Calor',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Calor',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'DISPONÍVEL',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -155,13 +155,13 @@ describe('Totem controller', () => {
     const req = getMockReq();
 
     req.body = {
-      localization: 'Rua Fran'
+      localizacao: 'Rua Fran'
     };
 
     mockRepository.createTotem.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
-        localization: 'Rua Visconde de Pirajá'
+        localizacao: 'Rua Visconde de Pirajá'
       }
     ]);
 
@@ -174,18 +174,18 @@ describe('Totem controller', () => {
     );
   });
 
-  it('should return bad request if localization isnt a string at create a totem', async () => {
+  it('should return bad request if localizacao isnt a string at create a totem', async () => {
     const { res } = getMockRes();
     const req = getMockReq();
 
     req.body = {
-      localization: 1
+      localizacao: 1
     };
 
     mockRepository.createTotem.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
-        localization: 'Rua Visconde de Pirajá'
+        localizacao: 'Rua Visconde de Pirajá'
       }
     ]);
 
@@ -198,14 +198,14 @@ describe('Totem controller', () => {
     );
   });
 
-  it('should return bad request if localization is missing at create a totem', async () => {
+  it('should return bad request if localizacao is missing at create a totem', async () => {
     const { res } = getMockRes();
     const req = getMockReq();
 
     mockRepository.createTotem.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
-        localization: 'Rua Visconde de Pirajá'
+        localizacao: 'Rua Visconde de Pirajá'
       }
     ]);
 
@@ -223,7 +223,7 @@ describe('Totem controller', () => {
     const req = getMockReq();
 
     req.body = {
-      localization: 'Rua Francisco'
+      localizacao: 'Rua Francisco'
     };
 
     req.params.id = '1bd9d5db-702d-4754-8260-e5d4586a2626';
@@ -231,7 +231,7 @@ describe('Totem controller', () => {
     mockRepository.updateTotens.mockReturnValue([
       {
         id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-        localization: 'Rua Francisco'
+        localizacao: 'Rua Francisco'
       }
     ]);
 
@@ -244,7 +244,7 @@ describe('Totem controller', () => {
     );
   });
 
-  it('should return bad request if localization is missing at update a totem', async () => {
+  it('should return bad request if localizacao is missing at update a totem', async () => {
     const { res } = getMockRes();
     const req = getMockReq();
 
@@ -253,7 +253,7 @@ describe('Totem controller', () => {
     mockRepository.updateTotens.mockReturnValue([
       {
         id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-        localization: 'Rua Francisco'
+        localizacao: 'Rua Francisco'
       }
     ]);
 
@@ -266,12 +266,12 @@ describe('Totem controller', () => {
     );
   });
 
-  it('should return bad request if localization isnt a string at update a totem', async () => {
+  it('should return bad request if localizacao isnt a string at update a totem', async () => {
     const { res } = getMockRes();
     const req = getMockReq();
 
     req.body = {
-      localization: 1
+      localizacao: 1
     };
 
     req.params.id = '1bd9d5db-702d-4754-8260-e5d4586a2626';
@@ -279,7 +279,7 @@ describe('Totem controller', () => {
     mockRepository.updateTotens.mockReturnValue([
       {
         id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-        localization: 'Rua Francisco'
+        localizacao: 'Rua Francisco'
       }
     ]);
 
@@ -297,7 +297,7 @@ describe('Totem controller', () => {
     const req = getMockReq();
 
     req.body = {
-      localization: 'Rua Teste'
+      localizacao: 'Rua Teste'
     };
 
     req.params.id = 'a';
@@ -305,7 +305,7 @@ describe('Totem controller', () => {
     mockRepository.updateTotens.mockReturnValue([
       {
         id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-        localization: 'Rua Francisco'
+        localizacao: 'Rua Francisco'
       }
     ]);
 
@@ -327,7 +327,7 @@ describe('Totem controller', () => {
     mockRepository.deleteTotem.mockReturnValue([
       {
         id: '1bd9d5db-702d-4754-8260-e5d4586a2626',
-        localization: 'Rua Francisco'
+        localizacao: 'Rua Francisco'
       }
     ]);
 

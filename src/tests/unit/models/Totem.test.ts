@@ -5,9 +5,9 @@ describe('Totem Model', () => {
     const totem = new Totem();
 
     totem.id = '1';
-    totem.localization = 'Rua Francisco Otaviano, 67';
+    totem.localizacao = 'Rua Francisco Otaviano, 67';
 
     expect(totem.id).toEqual('1');
-    expect(totem.localization).toEqual('Rua Francisco Otaviano, 67');
+    expect(totem.localizacao).toEqual('Rua Francisco Otaviano, 67');
   });
 });

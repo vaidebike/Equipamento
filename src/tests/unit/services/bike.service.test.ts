@@ -29,10 +29,10 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi';
-    newBike.model = 'Caloi 10';
-    newBike.year = 2020;
-    newBike.localization = 'Campus I';
+    newBike.marca = 'Caloi';
+    newBike.modelo = 'Caloi 10';
+    newBike.ano = 2020;
+    newBike.localizacao = 'Campus I';
     newBike.status = 'NOVA';
 
     mockDB.getData.mockReturnValue([newBike, newBike, newBike]);
@@ -47,10 +47,10 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi';
-    newBike.model = 'Caloi 10';
-    newBike.year = 2020;
-    newBike.localization = 'Campus I';
+    newBike.marca = 'Caloi';
+    newBike.modelo = 'Caloi 10';
+    newBike.ano = 2020;
+    newBike.localizacao = 'Campus I';
     newBike.status = 'NOVA';
 
     mockDB.getIndex.mockReturnValue(0);
@@ -74,10 +74,10 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi';
-    newBike.model = 'Caloi 10';
-    newBike.year = 2020;
-    newBike.localization = 'Campus I';
+    newBike.marca = 'Caloi';
+    newBike.modelo = 'Caloi 10';
+    newBike.ano = 2020;
+    newBike.localizacao = 'Campus I';
     newBike.status = 'NOVA';
 
     mockDB.push.mockReturnValue(newBike);
@@ -86,10 +86,10 @@ describe('Bike service', () => {
 
     const bike = await createBike(
       mockDB,
-      newBike.brand,
-      newBike.model,
-      newBike.year,
-      newBike.localization
+      newBike.marca,
+      newBike.modelo,
+      newBike.ano,
+      newBike.localizacao
     );
 
     expect(bike).toHaveProperty('id');
@@ -101,10 +101,10 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi';
-    newBike.model = 'Caloi 10';
-    newBike.year = 2020;
-    newBike.localization = 'Campus I';
+    newBike.marca = 'Caloi';
+    newBike.modelo = 'Caloi 10';
+    newBike.ano = 2020;
+    newBike.localizacao = 'Campus I';
     newBike.status = 'NOVA';
 
     mockDB.getIndex.mockReturnValue(0);
@@ -128,32 +128,32 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi';
-    newBike.model = 'Caloi 10';
-    newBike.year = 2020;
-    newBike.localization = 'Campus I';
+    newBike.marca = 'Caloi';
+    newBike.modelo = 'Caloi 10';
+    newBike.ano = 2020;
+    newBike.localizacao = 'Campus I';
     newBike.status = 'NOVA';
 
     const newBrand = 'Caloi Nova';
     const newModel = 'Caloi 10 Nova';
     const newYear = 2021;
-    const newLocalization = 'Campus II';
+    const newlocalizacao = 'Campus II';
 
     mockDB.getIndex.mockReturnValue(0);
     mockDB.push.mockReturnValue({
       ...newBike,
-      brand: newBrand,
-      model: newModel,
-      year: newYear,
-      localization: newLocalization
+      marca: newBrand,
+      modelo: newModel,
+      ano: newYear,
+      localizacao: newlocalizacao
     });
 
     mockDB.getData.mockReturnValue({
       ...newBike,
-      brand: newBrand,
-      model: newModel,
-      year: newYear,
-      localization: newLocalization
+      marca: newBrand,
+      modelo: newModel,
+      ano: newYear,
+      localizacao: newlocalizacao
     });
 
     const bike = await updateBikes(
@@ -161,12 +161,12 @@ describe('Bike service', () => {
       newBrand,
       newModel,
       newYear,
-      newLocalization,
+      newlocalizacao,
       newBike.id
     );
 
     expect(bike.id).toEqual(newBikeID);
-    expect(bike.brand).toEqual(newBrand);
+    expect(bike.marca).toEqual(newBrand);
     expect(bike.status).toEqual('NOVA');
   });
 
@@ -175,10 +175,10 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi';
-    newBike.model = 'Caloi 10';
-    newBike.year = 2020;
-    newBike.localization = 'Campus I';
+    newBike.marca = 'Caloi';
+    newBike.modelo = 'Caloi 10';
+    newBike.ano = 2020;
+    newBike.localizacao = 'Campus I';
     newBike.status = 'NOVA';
 
     mockDB.getIndex.mockReturnValue(0);
@@ -196,19 +196,19 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi Nova';
-    newBike.model = 'Caloi 10 Nova';
-    newBike.year = 2021;
-    newBike.localization = 'Campus II';
+    newBike.marca = 'Caloi Nova';
+    newBike.modelo = 'Caloi 10 Nova';
+    newBike.ano = 2021;
+    newBike.localizacao = 'Campus II';
 
     mockDB.getIndex.mockReturnValue(-1);
 
     const bike = await updateBikes(
       mockDB,
-      newBike.brand,
-      newBike.model,
-      newBike.year,
-      newBike.localization,
+      newBike.marca,
+      newBike.modelo,
+      newBike.ano,
+      newBike.localizacao,
       'invalidID'
     );
 
@@ -220,10 +220,10 @@ describe('Bike service', () => {
     const newBikeID = uuid();
 
     newBike.id = newBikeID;
-    newBike.brand = 'Caloi Nova';
-    newBike.model = 'Caloi 10 Nova';
-    newBike.year = 2021;
-    newBike.localization = 'Campus II';
+    newBike.marca = 'Caloi Nova';
+    newBike.modelo = 'Caloi 10 Nova';
+    newBike.ano = 2021;
+    newBike.localizacao = 'Campus II';
 
     mockDB.getIndex.mockReturnValue(-1);
 

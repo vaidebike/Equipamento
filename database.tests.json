@@ -1,24 +1,24 @@
 {
     "tb_totem": [
         {
-            "id": "9a801ce6-fc5b-4bec-9f7a-c72af33b3bb3",
-            "localization": "Rua Fran"
+            "id": "e8487118-8b81-4d26-9977-ff251d67f124",
+            "localizacao": "Rua Fran"
         },
         {
             "id": "8628961d-82c2-44b5-9927-5aabb5c4de65",
-            "localization": "Rua Tonelero"
+            "localizacao": "Rua Tonelero"
         },
         {
             "id": "8628961d-82c2-44b5-9927-5aabb5c4de66",
-            "localization": "Rua Tonelero"
+            "localizacao": "Rua Tonelero"
         },
         {
             "id": "8628961d-82c2-44b5-9927-5aabb5c4de67",
-            "localization": "Rua Tonelero"
+            "localizacao": "Rua Tonelero"
         },
         {
             "id": "8628961d-82c2-44b5-9927-5aabb5c4de68",
-            "localization": "Rua Tonelero"
+            "localizacao": "Rua Tonelero"
         }
     ],
     "rel_totem_tranca": [
@@ -34,57 +34,57 @@
     "tb_bicicleta": [
         {
             "id": "9c3c44c5-313a-4e04-9636-89aca282b1aa",
-            "brand": "Caloi",
-            "model": "Caloi 2034",
+            "marca": "Caloi",
+            "modelo": "Caloi 2034",
             "status": "REPARO_SOLICITADO",
-            "year": 2024,
-            "localization": "Rua Fran"
+            "ano": 2024,
+            "localizacao": "Rua Fran"
         },
         {
             "id": "9c3c44c5-313a-4e04-9636-89aca282b1a2",
-            "brand": "Caloi",
-            "model": "Caloi 2034",
+            "marca": "Caloi",
+            "modelo": "Caloi 2034",
             "status": "EM_REPARO",
-            "year": 2024,
-            "localization": "Rua Fran"
+            "ano": 2024,
+            "localizacao": "Rua Fran"
         },
         {
             "id": "9c3c44c5-313a-4e04-9636-89aca282b1a3",
-            "brand": "Caloi",
-            "model": "Caloi 2034",
+            "marca": "Caloi",
+            "modelo": "Caloi 2034",
             "status": "DISPONÍVEL",
-            "year": 2024,
-            "localization": "Rua Fran"
+            "ano": 2024,
+            "localizacao": "Rua Fran"
         },
         {
-            "id": "51f23a1a-afaf-43db-89a4-90195c49ea87",
-            "brand": "Caloi",
-            "model": "Caloi 2034",
-            "year": 2024,
+            "id": "fb9a6502-00ee-4cb4-b6df-5d1732cef726",
+            "marca": "Caloi",
+            "modelo": "Caloi 2034",
+            "ano": 2024,
             "status": "NOVA",
-            "localization": "Rua Fran"
+            "localizacao": "Rua Fran"
         }
     ],
     "tb_tranca": [
         {
             "id": "b0702769-a6a3-4127-bd58-7e1580505ccc",
-            "year": 2035,
-            "model": "Tranca Maneira",
-            "localization": "Rua Raul Pompeia",
+            "ano": 2035,
+            "modelo": "Tranca Maneira",
+            "localizacao": "Rua Raul Pompeia",
             "status": "OCUPADA"
         },
         {
             "id": "b0702769-a6a3-4127-bd58-7e1580505cc3",
-            "year": 2035,
-            "model": "Tranca Maneira",
-            "localization": "Rua Raul Pompeia",
+            "ano": 2035,
+            "modelo": "Tranca Maneira",
+            "localizacao": "Rua Raul Pompeia",
             "status": "DISPONÍVEL"
         },
         {
             "id": "b0702769-a6a3-4127-bd58-7e1580505cc4",
-            "year": 2035,
-            "model": "Tranca Maneira",
-            "localization": "Rua Raul Pompeia",
+            "ano": 2035,
+            "modelo": "Tranca Maneira",
+            "localizacao": "Rua Raul Pompeia",
             "status": "OCUPADA"
         }
     ],

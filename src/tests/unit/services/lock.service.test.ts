@@ -31,9 +31,9 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10';
-    newLock.year = 2021;
-    newLock.localization = 'Praça I';
+    newLock.modelo = 'Tranca 10';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça I';
     newLock.status = 'NOVA';
 
     mockDB.getData.mockReturnValue([newLock, newLock, newLock]);
@@ -48,9 +48,9 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10';
-    newLock.year = 2021;
-    newLock.localization = 'Praça I';
+    newLock.modelo = 'Tranca 10';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça I';
     newLock.status = 'NOVA';
 
     mockDB.getIndex.mockReturnValue(0);
@@ -74,9 +74,9 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10';
-    newLock.year = 2021;
-    newLock.localization = 'Praça I';
+    newLock.modelo = 'Tranca 10';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça I';
     newLock.status = 'NOVA';
 
     mockDB.push.mockReturnValue(newLock);
@@ -85,9 +85,9 @@ describe('Lock service', () => {
 
     const lock = await createLock(
       mockDB,
-      newLock.year,
-      newLock.model,
-      newLock.localization
+      newLock.ano,
+      newLock.modelo,
+      newLock.localizacao
     );
 
     expect(lock).toHaveProperty('id');
@@ -99,9 +99,9 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10';
-    newLock.year = 2021;
-    newLock.localization = 'Praça I';
+    newLock.modelo = 'Tranca 10';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça I';
     newLock.status = 'NOVA';
 
     mockDB.getIndex.mockReturnValue(0);
@@ -129,15 +129,15 @@ describe('Lock service', () => {
     const newBikeID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10';
-    newLock.year = 2021;
-    newLock.localization = 'Praça I';
+    newLock.modelo = 'Tranca 10';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça I';
     newLock.status = 'DISPONÍVEL';
 
     newBike.id = newBikeID;
-    newBike.model = 'Tranca 10';
-    newBike.year = 2021;
-    newBike.localization = 'Praça I';
+    newBike.modelo = 'Tranca 10';
+    newBike.ano = 2021;
+    newBike.localizacao = 'Praça I';
     newBike.status = 'REPARO_SOLICITADO';
 
     mockDB.getIndex.mockReturnValue(0);
@@ -156,36 +156,36 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10';
-    newLock.year = 2021;
-    newLock.localization = 'Praça I';
+    newLock.modelo = 'Tranca 10';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça I';
     newLock.status = 'NOVA';
 
     const newBrand = 'Tranca Nova';
     const newModel = 'Tranca 10 Nova';
     const newYear = 2021;
-    const newLocalization = 'Praça II';
+    const newlocalizacao = 'Praça II';
 
     mockDB.getIndex.mockReturnValue(0);
     mockDB.push.mockReturnValue({
       ...newLock,
-      model: newModel,
-      year: newYear,
-      localization: newLocalization
+      modelo: newModel,
+      ano: newYear,
+      localizacao: newlocalizacao
     });
 
     mockDB.getData.mockReturnValue({
       ...newLock,
-      model: newModel,
-      year: newYear,
-      localization: newLocalization
+      modelo: newModel,
+      ano: newYear,
+      localizacao: newlocalizacao
     });
 
     const lock = await updateLocks(
       mockDB,
       newYear,
       newModel,
-      newLocalization,
+      newlocalizacao,
       newLock.id
     );
 
@@ -198,9 +198,9 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10';
-    newLock.year = 2021;
-    newLock.localization = 'Praça I';
+    newLock.modelo = 'Tranca 10';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça I';
     newLock.status = 'NOVA';
 
     mockDB.getIndex.mockReturnValue(0);
@@ -218,17 +218,17 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10 Nova';
-    newLock.year = 2021;
-    newLock.localization = 'Praça II';
+    newLock.modelo = 'Tranca 10 Nova';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça II';
 
     mockDB.getIndex.mockReturnValue(-1);
 
     const lock = await updateLocks(
       mockDB,
-      newLock.year,
-      newLock.model,
-      newLock.localization,
+      newLock.ano,
+      newLock.modelo,
+      newLock.localizacao,
       'invalidID'
     );
 
@@ -240,9 +240,9 @@ describe('Lock service', () => {
     const newLockID = uuid();
 
     newLock.id = newLockID;
-    newLock.model = 'Tranca 10 Nova';
-    newLock.year = 2021;
-    newLock.localization = 'Praça II';
+    newLock.modelo = 'Tranca 10 Nova';
+    newLock.ano = 2021;
+    newLock.localizacao = 'Praça II';
 
     mockDB.getIndex.mockReturnValue(-1);
 

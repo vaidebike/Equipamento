@@ -28,7 +28,7 @@ describe('Totem service', () => {
     const newTotemID = uuid();
 
     newTotem.id = newTotemID;
-    newTotem.localization = 'Praça I';
+    newTotem.localizacao = 'Praça I';
 
     mockDB.getData.mockReturnValue([newTotem, newTotem, newTotem]);
 
@@ -42,16 +42,16 @@ describe('Totem service', () => {
     const newTotemID = uuid();
 
     newTotem.id = newTotemID;
-    newTotem.localization = 'Praça I';
+    newTotem.localizacao = 'Praça I';
 
     mockDB.push.mockReturnValue(newTotem);
     mockDB.getIndex.mockReturnValue(0);
     mockDB.getData.mockReturnValue(newTotem);
 
-    const totem = await createTotem(mockDB, newTotem.localization);
+    const totem = await createTotem(mockDB, newTotem.localizacao);
 
     expect(totem).toHaveProperty('id');
-    expect(totem).toHaveProperty('localization');
+    expect(totem).toHaveProperty('localizacao');
   });
 
   it('should delete a totem', async () => {
@@ -59,7 +59,7 @@ describe('Totem service', () => {
     const newTotemID = uuid();
 
     newTotem.id = newTotemID;
-    newTotem.localization = 'Praça I';
+    newTotem.localizacao = 'Praça I';
 
     mockDB.getIndex.mockReturnValue(0);
     mockDB.delete.mockReturnValue(newTotem);
@@ -82,25 +82,25 @@ describe('Totem service', () => {
     const newTotemID = uuid();
 
     newTotem.id = newTotemID;
-    newTotem.localization = 'Praça I';
+    newTotem.localizacao = 'Praça I';
 
-    const newLocalization = 'Praça II';
+    const newlocalizacao = 'Praça II';
 
     mockDB.getIndex.mockReturnValue(0);
     mockDB.push.mockReturnValue({
       ...newTotem,
-      localization: newLocalization
+      localizacao: newlocalizacao
     });
 
     mockDB.getData.mockReturnValue({
       ...newTotem,
-      localization: newLocalization
+      localizacao: newlocalizacao
     });
 
-    const totem = await updateTotens(mockDB, newLocalization, newTotem.id);
+    const totem = await updateTotens(mockDB, newlocalizacao, newTotem.id);
 
     expect(totem.id).toEqual(newTotemID);
-    expect(totem.localization).toEqual('Praça II');
+    expect(totem.localizacao).toEqual('Praça II');
   });
 
   it('should return -1 if didnt find a totem by update', async () => {
@@ -108,15 +108,11 @@ describe('Totem service', () => {
     const newLockID = uuid();
 
     newTotem.id = newLockID;
-    newTotem.localization = 'Praça II';
+    newTotem.localizacao = 'Praça II';
 
     mockDB.getIndex.mockReturnValue(-1);
 
-    const totem = await updateTotens(
-      mockDB,
-      newTotem.localization,
-      'invalidID'
-    );
+    const totem = await updateTotens(mockDB, newTotem.localizacao, 'invalidID');
 
     expect(totem).toEqual(-1);
   });

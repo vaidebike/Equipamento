@@ -69,20 +69,20 @@ export const registerBike = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  const { brand, model, year, localization } = req.body;
+  const { marca, modelo, ano, localizacao } = req.body;
 
-  if (!brand || !model || !year || !localization) {
+  if (!marca || !modelo || !ano || !localizacao) {
     return badRequest(res, 'Missing required fields');
   } else if (
-    typeof brand !== 'string' ||
-    typeof model !== 'string' ||
-    typeof localization !== 'string' ||
-    typeof year !== 'number'
+    typeof marca !== 'string' ||
+    typeof modelo !== 'string' ||
+    typeof localizacao !== 'string' ||
+    typeof ano !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const bike = await createBike(db, brand, model, year, localization);
+  const bike = await createBike(db, marca, modelo, ano, localizacao);
   return created(res, bike);
 };
 
@@ -159,20 +159,20 @@ export const updateBike = async (
   res: Response
 ): Promise<any | null> => {
   const { id } = req.params;
-  const { brand, model, year, localization } = req.body;
+  const { marca, modelo, ano, localizacao } = req.body;
 
-  if (!brand || !model || !year || !localization) {
+  if (!marca || !modelo || !ano || !localizacao) {
     return badRequest(res, 'Missing required fields');
   } else if (
-    typeof brand !== 'string' ||
-    typeof model !== 'string' ||
-    typeof localization !== 'string' ||
-    typeof year !== 'number'
+    typeof marca !== 'string' ||
+    typeof modelo !== 'string' ||
+    typeof localizacao !== 'string' ||
+    typeof ano !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const bike = await updateBikes(db, brand, model, year, localization, id);
+  const bike = await updateBikes(db, marca, modelo, ano, localizacao, id);
 
   if (bike === -1) {
     return notFound(res, 'Bike not found');

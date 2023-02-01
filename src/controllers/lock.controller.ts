@@ -26,19 +26,19 @@ export const registerLock = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  const { year, model, localization } = req.body;
+  const { ano, modelo, localizacao } = req.body;
 
-  if (!model || !year || !localization) {
+  if (!modelo || !ano || !localizacao) {
     return badRequest(res, 'Missing required fields');
   } else if (
-    typeof model !== 'string' ||
-    typeof localization !== 'string' ||
-    typeof year !== 'number'
+    typeof modelo !== 'string' ||
+    typeof localizacao !== 'string' ||
+    typeof ano !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const lock = await createLock(db, year, model, localization);
+  const lock = await createLock(db, ano, modelo, localizacao);
   return created(res, lock);
 };
 
@@ -100,19 +100,19 @@ export const updateLock = async (
   res: Response
 ): Promise<any | null> => {
   const { id } = req.params;
-  const { year, model, localization } = req.body;
+  const { ano, modelo, localizacao } = req.body;
 
-  if (!model || !year || !localization) {
+  if (!modelo || !ano || !localizacao) {
     return badRequest(res, 'Missing required fields');
   } else if (
-    typeof model !== 'string' ||
-    typeof localization !== 'string' ||
-    typeof year !== 'number'
+    typeof modelo !== 'string' ||
+    typeof localizacao !== 'string' ||
+    typeof ano !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const lock = await updateLocks(db, year, model, localization, id);
+  const lock = await updateLocks(db, ano, modelo, localizacao, id);
 
   if (lock === -1) {
     return notFound(res, 'Lock not found');

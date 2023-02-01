@@ -49,15 +49,15 @@ export const registerTotem = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  const { localization } = req.body;
+  const { localizacao } = req.body;
 
-  if (!localization) {
+  if (!localizacao) {
     return badRequest(res, 'Missing required fields');
-  } else if (typeof localization !== 'string') {
+  } else if (typeof localizacao !== 'string') {
     return badRequest(res, 'Invalid fields');
   }
 
-  const totem = await createTotem(db, localization);
+  const totem = await createTotem(db, localizacao);
   return created(res, totem);
 };
 
@@ -66,15 +66,15 @@ export const updateTotem = async (
   res: Response
 ): Promise<any | null> => {
   const { id } = req.params;
-  const { localization } = req.body;
+  const { localizacao } = req.body;
 
-  if (!localization) {
+  if (!localizacao) {
     return badRequest(res, 'Missing required fields');
-  } else if (typeof localization !== 'string') {
+  } else if (typeof localizacao !== 'string') {
     return badRequest(res, 'Invalid fields');
   }
 
-  const totem = await updateTotens(db, localization, id);
+  const totem = await updateTotens(db, localizacao, id);
 
   if (totem === -1) {
     return notFound(res, 'Totem not found');

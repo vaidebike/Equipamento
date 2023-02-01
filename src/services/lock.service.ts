@@ -4,17 +4,17 @@ import { v4 as uuid } from 'uuid';
 
 export const createLock = async (
   db: any,
-  year: number,
-  model: string,
-  localization: string
+  ano: number,
+  modelo: string,
+  localizacao: string
 ): Promise<any | null> => {
   const newLockID = uuid();
 
   await db.push('/tb_tranca[]', {
     id: newLockID,
-    year,
-    model,
-    localization,
+    ano,
+    modelo,
+    localizacao,
     status: 'NOVA'
   });
 
@@ -73,9 +73,9 @@ export const getBikeAtLockRel = async (
 
 export const updateLocks = async (
   db: any,
-  year: number,
-  model: string,
-  localization: string,
+  ano: number,
+  modelo: string,
+  localizacao: string,
   id: string
 ): Promise<any | null> => {
   const lockIndex = await db.getIndex('/tb_tranca', id);
@@ -84,14 +84,14 @@ export const updateLocks = async (
     return -1;
   }
 
-  const newYear = year;
-  await db.push(`/tb_tranca[${lockIndex}]/year`, newYear, true);
+  const newYear = ano;
+  await db.push(`/tb_tranca[${lockIndex}]/ano`, newYear, true);
 
-  const newModel = model;
-  await db.push(`/tb_tranca[${lockIndex}]/model`, newModel, true);
+  const newModel = modelo;
+  await db.push(`/tb_tranca[${lockIndex}]/modelo`, newModel, true);
 
-  const newLocalization = localization;
-  await db.push(`/tb_tranca[${lockIndex}]/localization`, newLocalization, true);
+  const newlocalizacao = localizacao;
+  await db.push(`/tb_tranca[${lockIndex}]/localizacao`, newlocalizacao, true);
 
   const lock = await db.getData(`/tb_tranca[${lockIndex}]`);
   return lock;

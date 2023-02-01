@@ -5,21 +5,21 @@ import { v4 as uuid } from 'uuid';
 
 export const createBike = async (
   db: any,
-  brand: string,
-  model: string,
-  year: number,
-  localization: string
+  marca: string,
+  modelo: string,
+  ano: number,
+  localizacao: string
 ): Promise<any | null> => {
   try {
     const newBikeID = uuid();
 
     await db.push('/tb_bicicleta[]', {
       id: newBikeID,
-      brand,
-      model,
-      year,
+      marca,
+      modelo,
+      ano,
       status: 'NOVA',
-      localization
+      localizacao
     });
 
     const bikeCreatedIndex = await db.getIndex('/tb_bicicleta', newBikeID);
@@ -189,10 +189,10 @@ export const deleteBike = async (db: any, id: string): Promise<any | null> => {
 
 export const updateBikes = async (
   db: any,
-  brand: string,
-  model: string,
-  year: number,
-  localization: string,
+  marca: string,
+  modelo: string,
+  ano: number,
+  localizacao: string,
   id: string
 ): Promise<any | null> => {
   const bikeIndex = await db.getIndex('/tb_bicicleta', id);
@@ -201,19 +201,19 @@ export const updateBikes = async (
     return -1;
   }
 
-  const newBrand = brand;
-  await db.push(`/tb_bicicleta[${bikeIndex}]/brand`, newBrand, true);
+  const newBrand = marca;
+  await db.push(`/tb_bicicleta[${bikeIndex}]/marca`, newBrand, true);
 
-  const newModel = model;
-  await db.push(`/tb_bicicleta[${bikeIndex}]/model`, newModel, true);
+  const newModel = modelo;
+  await db.push(`/tb_bicicleta[${bikeIndex}]/modelo`, newModel, true);
 
-  const newYear = year;
-  await db.push(`/tb_bicicleta[${bikeIndex}]/year`, newYear, true);
+  const newYear = ano;
+  await db.push(`/tb_bicicleta[${bikeIndex}]/ano`, newYear, true);
 
-  const newLocalization = localization;
+  const newlocalizacao = localizacao;
   await db.push(
-    `/tb_bicicleta[${bikeIndex}]/localization`,
-    newLocalization,
+    `/tb_bicicleta[${bikeIndex}]/localizacao`,
+    newlocalizacao,
     true
   );
 

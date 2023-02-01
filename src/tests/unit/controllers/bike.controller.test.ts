@@ -43,52 +43,52 @@ describe('Bike controller', () => {
 
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-    brand: 'Caloi',
-    model: 'Caloi 2034',
+    marca: 'Caloi',
+    modelo: 'Caloi 2034',
     status: 'NOVA',
-    year: 2024,
-    localization: 'Rua Fran'
+    ano: 2024,
+    localizacao: 'Rua Fran'
   });
 
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282b1a2',
-    brand: 'Caloi',
-    model: 'Caloi 2034',
+    marca: 'Caloi',
+    modelo: 'Caloi 2034',
     status: 'REPARO_SOLICITADO',
-    year: 2024,
-    localization: 'Rua Fran'
+    ano: 2024,
+    localizacao: 'Rua Fran'
   });
 
   db.push('/tb_bicicleta[]', {
     id: '9c3c44c5-313a-4e04-9636-89aca282b1a3',
-    brand: 'Caloi',
-    model: 'Caloi 2034',
+    marca: 'Caloi',
+    modelo: 'Caloi 2034',
     status: 'NOVA',
-    year: 2024,
-    localization: 'Rua Fran'
+    ano: 2024,
+    localizacao: 'Rua Fran'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'OCUPADA'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505cc3',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'OCUPADA'
   });
 
   db.push('/tb_tranca[]', {
     id: 'b0702769-a6a3-4127-bd58-7e1580505cc4',
-    year: 2035,
-    model: 'Tranca Maneira',
-    localization: 'Rua Raul Pompeia',
+    ano: 2035,
+    modelo: 'Tranca Maneira',
+    localizacao: 'Rua Raul Pompeia',
     status: 'DISPONÍVEL'
   });
 
@@ -103,11 +103,11 @@ describe('Bike controller', () => {
     mockRepository.getBikes.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'EM_USO',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -129,10 +129,10 @@ describe('Bike controller', () => {
     mockRepository.getBike.mockReturnValue([
       {
         id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
-        localization: 'Rua Fran'
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -154,10 +154,10 @@ describe('Bike controller', () => {
     mockRepository.getBike.mockReturnValue([
       {
         id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
-        localization: 'Rua Fran'
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -179,11 +179,11 @@ describe('Bike controller', () => {
     mockRepository.deleteBike.mockReturnValue([
       {
         id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'EM_USO',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -201,20 +201,20 @@ describe('Bike controller', () => {
     const req = getMockReq();
 
     req.body = {
-      brand: 'Caloi',
-      model: 'Caloi 2034',
-      year: 2024,
-      localization: 'Rua Fran'
+      marca: 'Caloi',
+      modelo: 'Caloi 2034',
+      ano: 2024,
+      localizacao: 'Rua Fran'
     };
 
     mockRepository.createBike.mockReturnValue([
       {
         id: 'c21240db-d3d2-460d-b0b8-10aa077a3284',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         status: 'EM_USO',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -308,20 +308,20 @@ describe('Bike controller', () => {
     req.params.id = '9c3c44c5-313a-4e04-9636-89aca282b1aa';
 
     req.body = {
-      brand: 'Caloi',
-      model: 'Caloi 2034',
-      year: 2024,
-      localization: 'Rua Fran'
+      marca: 'Caloi',
+      modelo: 'Caloi 2034',
+      ano: 2024,
+      localizacao: 'Rua Fran'
     };
 
     mockRepository.updateBikes.mockReturnValue([
       {
         id: 'b0702769-a6a3-4127-bd58-7e1580505ccc',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
         STATUS: 'DISPONÍVEL',
-        localization: 'Rua Fran'
+        localizacao: 'Rua Fran'
       }
     ]);
 
@@ -344,10 +344,10 @@ describe('Bike controller', () => {
     mockRepository.updateBikeStatus.mockReturnValue([
       {
         id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
-        localization: 'Rua Fran',
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
+        localizacao: 'Rua Fran',
         status: 'EM_REPARO'
       }
     ]);
@@ -371,10 +371,10 @@ describe('Bike controller', () => {
     mockRepository.updateBikeStatus.mockReturnValue([
       {
         id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
-        localization: 'Rua Fran',
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
+        localizacao: 'Rua Fran',
         status: 'EM_REPARO'
       }
     ]);
@@ -398,10 +398,10 @@ describe('Bike controller', () => {
     mockRepository.updateBikeStatus.mockReturnValue([
       {
         id: '9c3c44c5-313a-4e04-9636-89aca282b1aa',
-        brand: 'Caloi',
-        model: 'Caloi 2034',
-        year: 2024,
-        localization: 'Rua Fran',
+        marca: 'Caloi',
+        modelo: 'Caloi 2034',
+        ano: 2024,
+        localizacao: 'Rua Fran',
         status: 'EM_REPARO'
       }
     ]);
