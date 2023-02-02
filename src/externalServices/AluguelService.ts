@@ -7,14 +7,21 @@ export class AluguelService {
   public async getBikeRentedByCyclistId(cyclistId: string): Promise<any> {
     const endpoint = "ciclista/aluguel/";
 
-    const res = await axios.get(`${this.apiURL}${endpoint}${cyclistId}`);
+    console.log('foi')
 
-    if (res.status !== 200) {
+    try {
+      const res = await axios.get(`${this.apiURL}${endpoint}${cyclistId}`);
+
+      if (res.status !== 200) {
+        return -1;
+      } else {
+        const { data } = res;
+  
+        return data;
+      }
+    } catch (err) {
       return -1;
-    } else {
-      const { data } = res;
-
-      return data;
     }
+
   }
 }
