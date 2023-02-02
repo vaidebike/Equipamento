@@ -6,7 +6,7 @@ export class AluguelService {
   public async getBikeRentedByCyclistId (cyclistId: string): Promise<any> {
     const endpoint = 'ciclista/aluguel/';
 
-    console.log('teste')
+    console.log('teste2')
 
     const response = await axios.get(`${this.apiURL}${endpoint}${cyclistId}`);
 
