@@ -1,26 +1,4 @@
 {
-    "tb_totem": [
-        {
-            "id": "bcc3d046-33eb-4fd1-afa9-4f1f74af22ae",
-            "localizacao": "Rua Fran"
-        },
-        {
-            "id": "8628961d-82c2-44b5-9927-5aabb5c4de65",
-            "localizacao": "Rua Tonelero"
-        },
-        {
-            "id": "8628961d-82c2-44b5-9927-5aabb5c4de66",
-            "localizacao": "Rua Tonelero"
-        },
-        {
-            "id": "8628961d-82c2-44b5-9927-5aabb5c4de67",
-            "localizacao": "Rua Tonelero"
-        },
-        {
-            "id": "8628961d-82c2-44b5-9927-5aabb5c4de68",
-            "localizacao": "Rua Tonelero"
-        }
-    ],
     "rel_totem_tranca": [
         {
             "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de67",
@@ -29,6 +7,10 @@
         {
             "idTotem": "8628961d-82c2-44b5-9927-5aabb5c4de66",
             "idTranca": "b0702769-a6a3-4127-bd58-7e1580505cc3"
+        },
+        {
+            "idTotem": "1bd9d5db-702d-4754-8260-e5d4586a2626",
+            "idTranca": "b0702769-a6a3-4127-bd58-7e1580505ccc"
         }
     ],
     "tb_bicicleta": [
@@ -38,7 +20,8 @@
             "modelo": "Caloi 2034",
             "status": "REPARO_SOLICITADO",
             "ano": 2024,
-            "localizacao": "Rua Fran"
+            "localizacao": "Rua Fran",
+            "numero": 1
         },
         {
             "id": "9c3c44c5-313a-4e04-9636-89aca282b1a2",
@@ -55,6 +38,14 @@
             "status": "DISPONÍVEL",
             "ano": 2024,
             "localizacao": "Rua Fran"
+        },
+        {
+            "id": "7ad561ee-7a09-4b65-8433-0fd2642dbb73",
+            "marca": "Caloi",
+            "modelo": "Caloi 2034",
+            "ano": 2024,
+            "numero": 1,
+            "status": "NOVA"
         }
     ],
     "tb_tranca": [
@@ -78,12 +69,25 @@
             "modelo": "Tranca Maneira",
             "localizacao": "Rua Raul Pompeia",
             "status": "OCUPADA"
+        },
+        {
+            "id": "b0702769-a6a3-4127-bd58-7e1580505ccc",
+            "ano": 2035,
+            "modelo": "Tranca Maneira",
+            "localizacao": "Rua Raul Pompeia",
+            "status": "OCUPADA"
         }
     ],
     "rel_tranca_bicicleta": [
         {
             "idTranca": "b0702769-a6a3-4127-bd58-7e1580505cc4",
             "idBicicleta": "9c3c44c5-313a-4e04-9636-89aca282b1a3"
+        }
+    ],
+    "tb_totem": [
+        {
+            "id": "30420971-1b94-4f39-aa2f-27e8977fe96d",
+            "localizacao": "Rua Fran"
         }
     ]
 }

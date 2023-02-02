@@ -2,6 +2,7 @@ export class Lock {
   id: string;
   modelo: string;
   ano: number;
+  numero: number;
   status: string;
   localizacao: string;
 }

@@ -30,7 +30,7 @@ export const empty = (res: Response, mensagem: string): Response =>
 
 export const badRequest = (res: Response, mensagem: any): Response =>
   res.status(422).json({
-    codigo: 'REQUIRED_FIELD_MISSING',
+    codigo: 'INVALID_DATA',
     mensagem
   });
 
