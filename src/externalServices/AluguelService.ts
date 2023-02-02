@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export class AluguelService {
-  private readonly apiURL = 'vaidebike-aluguel-api.herokuapp.com/';
+  private readonly apiURL = 'https://vaidebike-aluguel-api.herokuapp.com/';
 
   public async getBikeRentedByCyclistId (cyclistId: string): Promise<any> {
     const endpoint = 'ciclista/aluguel/';
