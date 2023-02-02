@@ -5,10 +5,10 @@ import { v4 as uuid } from 'uuid';
 
 export const createBike = async (
   db: any,
+  numero: number,
   marca: string,
   modelo: string,
-  ano: number,
-  localizacao: string
+  ano: number
 ): Promise<any | null> => {
   try {
     const newBikeID = uuid();
@@ -18,8 +18,8 @@ export const createBike = async (
       marca,
       modelo,
       ano,
-      status: 'NOVA',
-      localizacao
+      numero,
+      status: 'NOVA'
     });
 
     const bikeCreatedIndex = await db.getIndex('/tb_bicicleta', newBikeID);
@@ -42,16 +42,16 @@ export const addRelBikeToLock = async (
     return -1;
   }
 
-  const bikeIndexOnRel = await db.getIndex(
-    '/rel_tranca_bicicleta',
-    idBicicleta,
-    'idBicicleta'
-  );
+  // const bikeIndexOnRel = await db.getIndex(
+  //   '/rel_tranca_bicicleta',
+  //   idBicicleta,
+  //   'idBicicleta'
+  // );
 
-  if (bikeIndexOnRel !== -1) {
-    // SE A BICICLETA JÁ ESTIVER RELACIONADA A UMA TRANCA
-    return -600;
-  }
+  // if (bikeIndexOnRel !== -1) {
+  //   // SE A BICICLETA JÁ ESTIVER RELACIONADA A UMA TRANCA
+  //   return -600;
+  // }
 
   const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
 
@@ -189,10 +189,10 @@ export const deleteBike = async (db: any, id: string): Promise<any | null> => {
 
 export const updateBikes = async (
   db: any,
+  numero: number,
   marca: string,
   modelo: string,
   ano: number,
-  localizacao: string,
   id: string
 ): Promise<any | null> => {
   const bikeIndex = await db.getIndex('/tb_bicicleta', id);
@@ -200,6 +200,9 @@ export const updateBikes = async (
   if (bikeIndex === -1) {
     return -1;
   }
+
+  const newNumber = numero;
+  await db.push(`/tb_bicicleta[${bikeIndex}]/numero`, newNumber, true);
 
   const newBrand = marca;
   await db.push(`/tb_bicicleta[${bikeIndex}]/marca`, newBrand, true);
@@ -209,13 +212,6 @@ export const updateBikes = async (
 
   const newYear = ano;
   await db.push(`/tb_bicicleta[${bikeIndex}]/ano`, newYear, true);
-
-  const newlocalizacao = localizacao;
-  await db.push(
-    `/tb_bicicleta[${bikeIndex}]/localizacao`,
-    newlocalizacao,
-    true
-  );
 
   const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
   return bike;

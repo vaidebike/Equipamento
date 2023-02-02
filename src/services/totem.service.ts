@@ -31,7 +31,7 @@ export const getBikesAtTotem = async (
   db: any,
   idTotem: string
 ): Promise<any | null> => {
-  // TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+  // TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO verificacoes
 
   const numberOfLocksRelatedToTotens = await db.count('/rel_totem_tranca');
   const arrayOfLocks: any[] = [];

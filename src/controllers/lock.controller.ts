@@ -26,19 +26,26 @@ export const registerLock = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  const { ano, modelo, localizacao } = req.body;
+  const { numero, anoDeFabricacao, modelo, localizacao } = req.body;
 
-  if (!modelo || !ano || !localizacao) {
+  if (!modelo || !anoDeFabricacao || !localizacao || !numero) {
     return badRequest(res, 'Missing required fields');
   } else if (
     typeof modelo !== 'string' ||
     typeof localizacao !== 'string' ||
-    typeof ano !== 'number'
+    typeof numero !== 'number' ||
+    typeof anoDeFabricacao !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const lock = await createLock(db, ano, modelo, localizacao);
+  const lock = await createLock(
+    db,
+    numero,
+    anoDeFabricacao,
+    modelo,
+    localizacao
+  );
   return created(res, lock);
 };
 
@@ -100,19 +107,27 @@ export const updateLock = async (
   res: Response
 ): Promise<any | null> => {
   const { id } = req.params;
-  const { ano, modelo, localizacao } = req.body;
+  const { numero, anoDeFabricacao, modelo, localizacao } = req.body;
 
-  if (!modelo || !ano || !localizacao) {
+  if (!modelo || !anoDeFabricacao || !localizacao || !numero) {
     return badRequest(res, 'Missing required fields');
   } else if (
     typeof modelo !== 'string' ||
     typeof localizacao !== 'string' ||
-    typeof ano !== 'number'
+    typeof numero !== 'number' ||
+    typeof anoDeFabricacao !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const lock = await updateLocks(db, ano, modelo, localizacao, id);
+  const lock = await updateLocks(
+    db,
+    numero,
+    anoDeFabricacao,
+    modelo,
+    localizacao,
+    id
+  );
 
   if (lock === -1) {
     return notFound(res, 'Lock not found');
@@ -246,7 +261,7 @@ export const addLockToVaDeBike = async (
     return badRequest(res, 'Lock already belongs to a totem');
   }
 
-  return created(res, lock);
+  return ok(res, lock);
 };
 
 export const removeFromVaDeBike = async (

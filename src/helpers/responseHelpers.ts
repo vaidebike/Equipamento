@@ -6,16 +6,10 @@ import { Response } from 'express';
 import { BadRequestError, NotFoudError } from './errors';
 
 export const ok = (res: Response, content: any): Response =>
-  res.status(200).json({
-    code: 'OK',
-    content
-  });
+  res.status(200).json(content);
 
 export const created = (res: Response, content: any): Response =>
-  res.status(201).json({
-    code: 'CREATED',
-    content
-  });
+  res.status(201).json(content);
 
 export const relationshipCreated = (
   res: Response,
@@ -23,43 +17,42 @@ export const relationshipCreated = (
   secondEntity: any
 ): Response =>
   res.status(201).json({
-    code: 'CREATED',
+    codigo: 'CREATED',
     firstEntity,
     secondEntity
   });
 
-export const empty = (res: Response, message: string): Response =>
+export const empty = (res: Response, mensagem: string): Response =>
   res.status(204).json({
-    code: 'NO_CONTENT',
-    message: message || undefined
+    codigo: 'NO_CONTENT',
+    mensagem: mensagem || undefined
   });
 
-// CLIENT ERROR
-export const badRequest = (res: Response, message: any): Response =>
-  res.status(400).json({
-    code: 'BAD_REQUEST_ERROR',
-    message
+export const badRequest = (res: Response, mensagem: any): Response =>
+  res.status(422).json({
+    codigo: 'REQUIRED_FIELD_MISSING',
+    mensagem
   });
 
-export const invalid = (res: Response, message: string): Response =>
+export const invalid = (res: Response, mensagem: string): Response =>
   res.status(400).json({
-    code: 'INVALID',
-    message: message || 'Invalid.'
+    codigo: 'INVALID',
+    mensagem: mensagem || 'Invalid.'
   });
 
 export const unauthorized = (
   res: Response,
-  message: string | undefined = undefined
+  mensagem: string | undefined = undefined
 ): Response =>
   res.status(401).json({
-    code: 'UNAUTHORIZED',
-    message: message ?? 'Not allowed to perform this action.'
+    codigo: 'UNAUTHORIZED',
+    mensagem: mensagem ?? 'Not allowed to perform this action.'
   });
 
-export const notFound = (res: Response, message: string): Response =>
+export const notFound = (res: Response, mensagem: string): Response =>
   res.status(404).json({
-    code: 'NOT_FOUND',
-    message: message || 'Not found.'
+    codigo: 'NOT_FOUND',
+    mensagem: mensagem || 'Not found.'
   });
 
 // SERVER ERROR
@@ -78,19 +71,19 @@ export const serverError = (
   }
 
   return res.status(500).json({
-    code: 'SERVER_ERROR',
+    codigo: 'SERVER_ERROR',
     description,
-    error: error.message,
-    message: error.message,
+    error: error.mensagem,
+    mensagem: error.mensagem,
     ...(query ?? {})
   });
 };
 
 export const requiredField = (
   res: Response,
-  message: any
+  mensagem: any
 ): Response<any, Record<string, any>> =>
   res.status(422).json({
-    code: 'REQUIRED_FIELD_MISSING',
-    message
+    codigo: 'REQUIRED_FIELD_MISSING',
+    mensagem
   });

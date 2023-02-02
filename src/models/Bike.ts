@@ -4,7 +4,7 @@ export class Bike {
   modelo: string;
   status: string;
   ano: number;
-  localizacao: string;
+  numero: number;
 }
 
 export enum StatusEnum {

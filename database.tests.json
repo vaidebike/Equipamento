@@ -1,7 +1,7 @@
 {
     "tb_totem": [
         {
-            "id": "e8487118-8b81-4d26-9977-ff251d67f124",
+            "id": "bcc3d046-33eb-4fd1-afa9-4f1f74af22ae",
             "localizacao": "Rua Fran"
         },
         {
@@ -54,14 +54,6 @@
             "modelo": "Caloi 2034",
             "status": "DISPONÍVEL",
             "ano": 2024,
-            "localizacao": "Rua Fran"
-        },
-        {
-            "id": "fb9a6502-00ee-4cb4-b6df-5d1732cef726",
-            "marca": "Caloi",
-            "modelo": "Caloi 2034",
-            "ano": 2024,
-            "status": "NOVA",
             "localizacao": "Rua Fran"
         }
     ],

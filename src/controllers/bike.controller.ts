@@ -69,20 +69,20 @@ export const registerBike = async (
   req: Request,
   res: Response
 ): Promise<any | null> => {
-  const { marca, modelo, ano, localizacao } = req.body;
+  const { numero, marca, modelo, ano } = req.body;
 
-  if (!marca || !modelo || !ano || !localizacao) {
+  if (!marca || !modelo || !ano || !numero) {
     return badRequest(res, 'Missing required fields');
   } else if (
     typeof marca !== 'string' ||
     typeof modelo !== 'string' ||
-    typeof localizacao !== 'string' ||
+    typeof numero !== 'number' ||
     typeof ano !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const bike = await createBike(db, marca, modelo, ano, localizacao);
+  const bike = await createBike(db, numero, marca, modelo, ano);
   return created(res, bike);
 };
 
@@ -116,7 +116,7 @@ export const addBikeToVaDeBike = async (
     return badRequest(res, 'Lock must be available');
   }
 
-  return created(res, bike);
+  return ok(res, bike);
 };
 
 export const removeBikeFromVaDeBike = async (
@@ -159,20 +159,20 @@ export const updateBike = async (
   res: Response
 ): Promise<any | null> => {
   const { id } = req.params;
-  const { marca, modelo, ano, localizacao } = req.body;
+  const { numero, marca, modelo, ano } = req.body;
 
-  if (!marca || !modelo || !ano || !localizacao) {
+  if (!marca || !modelo || !ano || !numero) {
     return badRequest(res, 'Missing required fields');
   } else if (
     typeof marca !== 'string' ||
     typeof modelo !== 'string' ||
-    typeof localizacao !== 'string' ||
+    typeof numero !== 'number' ||
     typeof ano !== 'number'
   ) {
     return badRequest(res, 'Invalid fields');
   }
 
-  const bike = await updateBikes(db, marca, modelo, ano, localizacao, id);
+  const bike = await updateBikes(db, numero, marca, modelo, ano, id);
 
   if (bike === -1) {
     return notFound(res, 'Bike not found');

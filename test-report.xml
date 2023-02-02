@@ -1,113 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\totem.service.test.ts">
-    <testCase name="Totem service should get all totens" duration="5"/>
-    <testCase name="Totem service should create a totem" duration="5"/>
-    <testCase name="Totem service should delete a totem" duration="4"/>
-    <testCase name="Totem service should return -1 if didnt find a totem by delete" duration="2"/>
-    <testCase name="Totem service should update a totem" duration="2"/>
-    <testCase name="Totem service should return -1 if didnt find a totem by update" duration="0"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Totem.test.ts">
-    <testCase name="Totem Model totem attribution should be ok" duration="3"/>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\app.test.ts">
+    <testCase name="Get Endpoints Should be able to get" duration="53"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\lock.service.test.ts">
-    <testCase name="Lock service should get all locks" duration="2"/>
-    <testCase name="Lock service should get a lock" duration="3"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by get" duration="3"/>
-    <testCase name="Lock service should create a lock" duration="3"/>
-    <testCase name="Lock service should delete a lock" duration="3"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by delete" duration="2"/>
-    <testCase name="Lock service should return -300 if bike status it isnt new, in use or in repair at lock a lock" duration="7"/>
-    <testCase name="Lock service should update a lock" duration="15"/>
-    <testCase name="Lock service should update a lock status" duration="1"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by update" duration="1"/>
-    <testCase name="Lock service should return -1 if didnt find a lock by update lock status" duration="0"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\bike.service.test.ts">
-    <testCase name="Bike service should get all bikes" duration="2"/>
-    <testCase name="Bike service should get a bike" duration="1"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by get" duration="1"/>
-    <testCase name="Bike service should create a bike" duration="3"/>
-    <testCase name="Bike service should delete a bike" duration="2"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by delete" duration="1"/>
-    <testCase name="Bike service should update a bike" duration="3"/>
-    <testCase name="Bike service should update a bike status" duration="4"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by update" duration="2"/>
-    <testCase name="Bike service should return -1 if didnt find a bike by update bike status" duration="1"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Lock.test.ts">
-    <testCase name="Lock Model lock attribution should be ok" duration="4"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Bike.test.ts">
-    <testCase name="Bike Model bike attribution should be ok" duration="5"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\totem.controller.test.ts">
-    <testCase name="Totem controller should get all totens" duration="92"/>
-    <testCase name="Totem controller should get all locks related to toten" duration="7"/>
-    <testCase name="Totem controller should return not found if id totem is nonexistent at get all locks related to toten" duration="4"/>
-    <testCase name="Totem controller should get all bikes related to toten" duration="5"/>
-    <testCase name="Totem controller should create a totem" duration="23"/>
-    <testCase name="Totem controller should return bad request if localizacao isnt a string at create a totem" duration="3"/>
-    <testCase name="Totem controller should return bad request if localizacao is missing at create a totem" duration="9"/>
-    <testCase name="Totem controller should update a totem" duration="14"/>
-    <testCase name="Totem controller should return bad request if localizacao is missing at update a totem" duration="3"/>
-    <testCase name="Totem controller should return bad request if localizacao isnt a string at update a totem" duration="2"/>
-    <testCase name="Totem controller should return not found if id totem is nonexistent at update a totem" duration="2"/>
-    <testCase name="Totem controller should delete a totem" duration="14"/>
-    <testCase name="Totem controller should return not found if trying to delete a nonexistent totem" duration="3"/>
+    <testCase name="Teste teste teste" duration="0"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\lock.controller.test.ts">
-    <testCase name="Lock controller should create a lock" duration="320"/>
-    <testCase name="Lock controller should return bad request if invalid fields at register lock" duration="4"/>
-    <testCase name="Lock controller should return bad request if missing fields at register lock" duration="4"/>
-    <testCase name="Lock controller should get all locks" duration="10"/>
-    <testCase name="Lock controller should get a lock" duration="3"/>
-    <testCase name="Lock controller should lock a lock" duration="18"/>
-    <testCase name="Lock controller should unlock a lock" duration="49"/>
-    <testCase name="Lock controller should return bad request if idlock is missing at unlock a lock" duration="4"/>
-    <testCase name="Lock controller should return bad request if lock is already occupied at lock a lock" duration="3"/>
-    <testCase name="Lock controller should return not found if id lock is nonexistent at lock a lock" duration="2"/>
-    <testCase name="Lock controller should return bad request if id lock is missing at lock a lock" duration="2"/>
-    <testCase name="Lock controller should get bike at lock" duration="5"/>
-    <testCase name="Lock controller should return not found if id lock is not registred at get bike at lock" duration="7"/>
-    <testCase name="Lock controller should return bad request if idlock is missing at get bike at lock" duration="2"/>
-    <testCase name="Lock controller should return not found id lock id nonexistent at get a lock" duration="3"/>
-    <testCase name="Lock controller should return bad request lock if id is missing at get a lock" duration="4"/>
-    <testCase name="Lock controller should update lock" duration="32"/>
-    <testCase name="Lock controller should return bad request error if missing required fields at update lock" duration="5"/>
-    <testCase name="Lock controller should return bad request error if invalid fields at update lock" duration="6"/>
-    <testCase name="Lock controller should return not found if lock id is nonexistent at update lock" duration="3"/>
-    <testCase name="Lock controller should return not found if lock id nonexistent at delete a lock" duration="3"/>
-    <testCase name="Lock controller should update lock status" duration="16"/>
-    <testCase name="Lock controller should return not found if lock id id nonexistent at update lock status" duration="10"/>
-    <testCase name="Lock controller should return bad request if lock action is invalid at update lock status" duration="4"/>
-    <testCase name="Lock controller should create rel lock totem" duration="37"/>
-    <testCase name="Lock controller should return bad request if missing required fields at create rel lock totem" duration="3"/>
-    <testCase name="Lock controller should return bad request if invalid fields at create rel lock totem" duration="12"/>
-    <testCase name="Lock controller should delete rel lock totem" duration="23"/>
-    <testCase name="Lock controller should delete a lock" duration="11"/>
+    <testCase name="Teste teste teste" duration="0"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\bike.controller.test.ts">
-    <testCase name="Bike controller should get all bikes" duration="274"/>
-    <testCase name="Bike controller should get a bike" duration="5"/>
-    <testCase name="Bike controller should return not found if bike id is nonexistent at get a bike" duration="13"/>
-    <testCase name="Bike controller should delete a bike" duration="24"/>
-    <testCase name="Bike controller should create a bike" duration="17"/>
-    <testCase name="Bike controller should create rel bike lock" duration="82"/>
-    <testCase name="Bike controller should return bad request if missed fields at create rel bike lock" duration="4"/>
-    <testCase name="Bike controller should return bad request if invalid fields at create rel bike lock" duration="3"/>
-    <testCase name="Bike controller should update bike" duration="108"/>
-    <testCase name="Bike controller should update bike status" duration="33"/>
-    <testCase name="Bike controller should return bad request if bike status is invalid" duration="4"/>
-    <testCase name="Bike controller should return not found if bike id is nonexistent at update status" duration="9"/>
-    <testCase name="Bike controller should return bad request if missing required fields at delete rel bike lock" duration="6"/>
-    <testCase name="Bike controller should return bad request if invalid fields at delete rel bike lock" duration="5"/>
-    <testCase name="Bike controller should return bad request if action field is invalid at delete rel bike lock" duration="10"/>
-    <testCase name="Bike controller should return not found if bike not found at rel bike lock" duration="8"/>
-    <testCase name="Bike controller should delete rel bike lock" duration="119"/>
+    <testCase name="Teste teste teste" duration="0"/>
   </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\app.test.ts">
-    <testCase name="Get Endpoints Should be able to get" duration="117"/>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\bike.service.test.ts">
+    <testCase name="Teste teste teste" duration="1"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\totem.service.test.ts">
+    <testCase name="Teste teste teste" duration="1"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Bike.test.ts">
+    <testCase name="Teste teste teste" duration="0"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Lock.test.ts">
+    <testCase name="Teste teste teste" duration="1"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Totem.test.ts">
+    <testCase name="Teste teste teste" duration="1"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\totem.controller.test.ts">
+    <testCase name="Teste teste teste" duration="0"/>
   </file>
 </testExecutions>

@@ -1,1 +1,116 @@
-{}
+{
+    "tb_bicicleta": [
+        {
+            "id": "8b24e9ec-b998-4f96-a49d-6ca567f7b7d6",
+            "marca": "Caloi",
+            "modelo": "Caloi 2023",
+            "ano": 2023,
+            "numero": 1,
+            "status": "NOVA"
+        },
+        {
+            "id": "60dd3352-ef25-4a24-a89f-4b34a06f62f6",
+            "marca": "Caloi",
+            "modelo": "Caloi 2024",
+            "ano": 2024,
+            "numero": 1,
+            "status": "NOVA"
+        },
+        {
+            "id": "fe41c8f8-c9c7-43d8-a6c0-8eda3b060954",
+            "marca": "Caloi",
+            "modelo": "Caloi 2025",
+            "ano": 2025,
+            "numero": 1,
+            "status": "DISPONÍVEL"
+        },
+        {
+            "id": "3a6406c7-ef8d-44f7-88d7-6440bd5a8c85",
+            "marca": "Caloi",
+            "modelo": "Caloi 2026",
+            "ano": 2026,
+            "numero": 1,
+            "status": "DISPONÍVEL"
+        },
+        {
+            "id": "3524716b-dafb-456c-ab4d-202f8c76370c",
+            "marca": "Caloi",
+            "modelo": "Caloi 2027",
+            "ano": 2027,
+            "numero": 1,
+            "status": "NOVA"
+        }
+    ],
+    "tb_tranca": [
+        {
+            "id": "5624223d-0967-4ef6-92d7-7790eafa1c3b",
+            "numero": 1,
+            "anoDeFabricacao": 2035,
+            "modelo": "Tranca RUIM",
+            "localizacao": "Rua Francisco Otaviano",
+            "status": "OCUPADA"
+        },
+        {
+            "id": "2f231c43-cac0-4d48-8ac8-93f5aedc77b9",
+            "numero": 1,
+            "anoDeFabricacao": 2023,
+            "modelo": "Tranca RUIM",
+            "localizacao": "Rua Francisco Otaviano",
+            "status": "OCUPADA"
+        },
+        {
+            "id": "20ce00af-5f07-4ab1-aaeb-38fe8b790dd8",
+            "numero": 1,
+            "anoDeFabricacao": 2024,
+            "modelo": "Tranca RUIM",
+            "localizacao": "Rua Francisco Otaviano",
+            "status": "DISPONÍVEL"
+        },
+        {
+            "id": "4a25ff7f-cf08-4ef8-a06f-fa241d876e6c",
+            "numero": 1,
+            "anoDeFabricacao": 20255,
+            "modelo": "Tranca BOA",
+            "localizacao": "Rua Copacabana",
+            "status": "NOVA"
+        }
+    ],
+    "tb_totem": [
+        {
+            "id": "ac7c391d-0792-4ccc-8153-5a631b610f77",
+            "localizacao": "Rua Copacabana"
+        },
+        {
+            "id": "d7286923-f969-49bd-ac8e-5b7b7ba8afca",
+            "localizacao": "Rua Ipanema"
+        },
+        {
+            "id": "987c6537-1920-433d-acaa-37bdb3180d64",
+            "localizacao": "Rua Tijuca"
+        }
+    ],
+    "rel_totem_tranca": [
+        {
+            "idTotem": "ac7c391d-0792-4ccc-8153-5a631b610f77",
+            "idTranca": "5624223d-0967-4ef6-92d7-7790eafa1c3b"
+        },
+        {
+            "idTotem": "ac7c391d-0792-4ccc-8153-5a631b610f77",
+            "idTranca": "2f231c43-cac0-4d48-8ac8-93f5aedc77b9"
+        },
+        {
+            "idTotem": "d7286923-f969-49bd-ac8e-5b7b7ba8afca",
+            "idTranca": "20ce00af-5f07-4ab1-aaeb-38fe8b790dd8"
+        }
+    ],
+    "rel_tranca_bicicleta": [
+        {
+            "idTranca": "5624223d-0967-4ef6-92d7-7790eafa1c3b",
+            "idBicicleta": "3a6406c7-ef8d-44f7-88d7-6440bd5a8c85"
+        },
+        {
+            "idTranca": "2f231c43-cac0-4d48-8ac8-93f5aedc77b9",
+            "idBicicleta": "fe41c8f8-c9c7-43d8-a6c0-8eda3b060954"
+        }
+    ]
+}
