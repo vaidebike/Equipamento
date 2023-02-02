@@ -165,7 +165,7 @@ export const postLocklock = async (
       idBicicleta
     });
 
-    return lock;
+    return { ...lock, bicicleta: bike.id };
   } else {
     const lockIndex = await db.getIndex('/tb_tranca', idTranca);
 
@@ -225,7 +225,7 @@ export const postUnlocklock = async (
 
   await db.delete(`/rel_tranca_bicicleta[${lockIndexOnRel}]`);
 
-  return lock;
+  return { ...lock, bicicleta: idBicicleta };
 };
 
 export const deleteLock = async (db: any, id: string): Promise<any | null> => {

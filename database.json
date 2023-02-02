@@ -38,7 +38,7 @@
             "modelo": "Caloi 2027",
             "ano": 2027,
             "numero": 1,
-            "status": "NOVA"
+            "status": "DISPONÍVEL"
         }
     ],
     "tb_tranca": [
@@ -48,7 +48,7 @@
             "anoDeFabricacao": 2035,
             "modelo": "Tranca RUIM",
             "localizacao": "Rua Francisco Otaviano",
-            "status": "OCUPADA"
+            "status": "DISPONÍVEL"
         },
         {
             "id": "2f231c43-cac0-4d48-8ac8-93f5aedc77b9",
@@ -105,12 +105,8 @@
     ],
     "rel_tranca_bicicleta": [
         {
-            "idTranca": "5624223d-0967-4ef6-92d7-7790eafa1c3b",
-            "idBicicleta": "3a6406c7-ef8d-44f7-88d7-6440bd5a8c85"
-        },
-        {
             "idTranca": "2f231c43-cac0-4d48-8ac8-93f5aedc77b9",
-            "idBicicleta": "fe41c8f8-c9c7-43d8-a6c0-8eda3b060954"
+            "idBicicleta": "3524716b-dafb-456c-ab4d-202f8c76370c"
         }
     ]
 }

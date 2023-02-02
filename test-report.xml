@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\app.test.ts">
-    <testCase name="Get Endpoints Should be able to get" duration="53"/>
+    <testCase name="Get Endpoints Should be able to get" duration="40"/>
   </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\lock.service.test.ts">
-    <testCase name="Teste teste teste" duration="0"/>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Lock.test.ts">
+    <testCase name="Teste teste teste" duration="1"/>
   </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\lock.controller.test.ts">
-    <testCase name="Teste teste teste" duration="0"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\bike.controller.test.ts">
-    <testCase name="Teste teste teste" duration="0"/>
-  </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\bike.service.test.ts">
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\totem.controller.test.ts">
     <testCase name="Teste teste teste" duration="1"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\totem.service.test.ts">
     <testCase name="Teste teste teste" duration="1"/>
   </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Bike.test.ts">
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\lock.service.test.ts">
     <testCase name="Teste teste teste" duration="0"/>
   </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Lock.test.ts">
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\bike.controller.test.ts">
     <testCase name="Teste teste teste" duration="1"/>
   </file>
   <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Totem.test.ts">
     <testCase name="Teste teste teste" duration="1"/>
   </file>
-  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\totem.controller.test.ts">
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\services\bike.service.test.ts">
+    <testCase name="Teste teste teste" duration="1"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\controllers\lock.controller.test.ts">
     <testCase name="Teste teste teste" duration="0"/>
+  </file>
+  <file path="C:\Users\Maria.Dias.HOMLABNOT001235\Documents\Unirio\PM\Equipamento\src\tests\unit\models\Bike.test.ts">
+    <testCase name="Teste teste teste" duration="1"/>
   </file>
 </testExecutions>
