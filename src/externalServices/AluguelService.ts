@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { notFound, serverError } from '../helpers/responseHelpers';
 
 export class AluguelService {
   private readonly apiURL = 'https://vaidebike-aluguel-api.herokuapp.com/';
@@ -6,12 +7,15 @@ export class AluguelService {
   public async getBikeRentedByCyclistId (cyclistId: string): Promise<any> {
     const endpoint = 'ciclista/aluguel/';
 
-    console.log('teste2')
+    const res = await axios.get(`${this.apiURL}${endpoint}${cyclistId}`)
 
-    const response = await axios.get(`${this.apiURL}${endpoint}${cyclistId}`);
+    if (res.status !== '200') {
+      return notFound(res, "Não foi encontrado");
+    } else {
+      const { data } = res;
+  
+      return data;
+    }
 
-    const { data } = response;
-
-    return data;
   }
 }
