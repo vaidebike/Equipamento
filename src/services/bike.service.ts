@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { v4 as uuid } from 'uuid';
-import { AluguelService } from '../externalServices/AluguelService';
+import { v4 as uuid } from "uuid";
+import { AluguelService } from "../externalServices/AluguelService";
 
 export const createBike = async (
   db: any,
@@ -14,16 +14,16 @@ export const createBike = async (
   try {
     const newBikeID = uuid();
 
-    await db.push('/tb_bicicleta[]', {
+    await db.push("/tb_bicicleta[]", {
       id: newBikeID,
       marca,
       modelo,
       ano,
       numero,
-      status: 'NOVA'
+      status: "NOVA",
     });
 
-    const bikeCreatedIndex = await db.getIndex('/tb_bicicleta', newBikeID);
+    const bikeCreatedIndex = await db.getIndex("/tb_bicicleta", newBikeID);
     const bikeCreated = await db.getData(`/tb_bicicleta[${bikeCreatedIndex}]`);
 
     return bikeCreated;
@@ -37,16 +37,16 @@ export const addRelBikeToLock = async (
   idTranca: string,
   idBicicleta: string
 ): Promise<any | null> => {
-  const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
+  const bikeIndex = await db.getIndex("/tb_bicicleta", idBicicleta);
 
   if (bikeIndex === -1) {
     return -1;
   }
 
   const bikeIndexOnRel = await db.getIndex(
-    '/rel_tranca_bicicleta',
+    "/rel_tranca_bicicleta",
     idBicicleta,
-    'idBicicleta'
+    "idBicicleta"
   );
 
   if (bikeIndexOnRel !== -1) {
@@ -57,15 +57,15 @@ export const addRelBikeToLock = async (
   const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
 
   if (
-    bike.status !== 'NOVA' &&
-    bike.status !== 'EM_REPARO' &&
-    bike.status !== 'EM_USO'
+    bike.status !== "NOVA" &&
+    bike.status !== "EM_REPARO" &&
+    bike.status !== "EM_USO"
   ) {
     // SE A BICICLETA NÃO ESTIVER COM STATUS NOVA OU EM REPARO OU EM USO
     return -500;
   }
 
-  const trancaIndex = await db.getIndex('/tb_tranca', idTranca);
+  const trancaIndex = await db.getIndex("/tb_tranca", idTranca);
 
   if (trancaIndex === -1) {
     return -1;
@@ -73,18 +73,18 @@ export const addRelBikeToLock = async (
 
   const lock = await db.getData(`/tb_tranca[${trancaIndex}]`);
 
-  if (lock.status !== 'DISPONÍVEL') {
+  if (lock.status !== "DISPONÍVEL") {
     // SE A BICICLETA NÃO ESTIVER COM STATUS DISPONÍVEL
     return -700;
   }
 
-  await db.push(`/tb_bicicleta[${bikeIndex}]/status`, 'DISPONÍVEL', true);
+  await db.push(`/tb_bicicleta[${bikeIndex}]/status`, "DISPONÍVEL", true);
 
-  await db.push(`/tb_tranca[${trancaIndex}]/status`, 'OCUPADA', true);
+  await db.push(`/tb_tranca[${trancaIndex}]/status`, "OCUPADA", true);
 
-  await db.push('/rel_tranca_bicicleta[]', {
+  await db.push("/rel_tranca_bicicleta[]", {
     idTranca,
-    idBicicleta
+    idBicicleta,
   });
 
   return bike;
@@ -96,9 +96,9 @@ export const deleteRelBikeToLock = async (
   idBicicleta: string,
   acao: string
 ): Promise<any | null> => {
-  const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
+  const bikeIndex = await db.getIndex("/tb_bicicleta", idBicicleta);
 
-  const trancaIndex = await db.getIndex('/tb_tranca', idTranca);
+  const trancaIndex = await db.getIndex("/tb_tranca", idTranca);
 
   const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
 
@@ -112,15 +112,15 @@ export const deleteRelBikeToLock = async (
     return -1;
   }
 
-  if (bike.status !== 'REPARO_SOLICITADO') {
+  if (bike.status !== "REPARO_SOLICITADO") {
     // BICICLETA SEM REPARO SOLICITADO
     return -500;
   }
 
   const bikeIndexOnRel = await db.getIndex(
-    '/rel_tranca_bicicleta',
+    "/rel_tranca_bicicleta",
     idBicicleta,
-    'idBicicleta'
+    "idBicicleta"
   );
 
   if (bikeIndexOnRel === -1) {
@@ -134,13 +134,13 @@ export const deleteRelBikeToLock = async (
 
   await db.push(`/tb_bicicleta[${bikeIndex}]/status`, newStatus, true);
 
-  await db.push(`/tb_tranca[${trancaIndex}]/status`, 'DISPONÍVEL', true);
+  await db.push(`/tb_tranca[${trancaIndex}]/status`, "DISPONÍVEL", true);
 
   return bike;
 };
 
 export const getBikes = async (db: any): Promise<any | null> => {
-  const allBikes = await db.getData('/tb_bicicleta');
+  const allBikes = await db.getData("/tb_bicicleta");
   return allBikes;
 };
 
@@ -153,13 +153,13 @@ export const getBikeRentedByCyclist = async (
   const cyclistDataWithBikeRented =
     await aluguelService.getBikeRentedByCyclistId(cyclistId);
 
-  if(cyclistDataWithBikeRented === null) {
+  if (cyclistDataWithBikeRented === null || cyclistDataWithBikeRented === -1) {
     return -1;
   }
 
   const idBicicleta = cyclistDataWithBikeRented.bicicleta;
 
-  const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
+  const bikeIndex = await db.getIndex("/tb_bicicleta", idBicicleta);
 
   if (bikeIndex === -1) {
     return -1;
@@ -169,7 +169,7 @@ export const getBikeRentedByCyclist = async (
 };
 
 export const getBike = async (db: any, id: string): Promise<any | null> => {
-  const bikeIndex = await db.getIndex('/tb_bicicleta', id);
+  const bikeIndex = await db.getIndex("/tb_bicicleta", id);
 
   if (bikeIndex === -1) {
     return -1;
@@ -179,7 +179,7 @@ export const getBike = async (db: any, id: string): Promise<any | null> => {
 };
 
 export const deleteBike = async (db: any, id: string): Promise<any | null> => {
-  const bikeIndex = await db.getIndex('/tb_bicicleta', id);
+  const bikeIndex = await db.getIndex("/tb_bicicleta", id);
 
   if (bikeIndex === -1) {
     return -1;
@@ -187,7 +187,7 @@ export const deleteBike = async (db: any, id: string): Promise<any | null> => {
 
   const bike = await db.push(
     `/tb_bicicleta[${bikeIndex}]/status`,
-    'EXCLUIDA',
+    "EXCLUIDA",
     true
   );
 
@@ -202,7 +202,7 @@ export const updateBikes = async (
   ano: number,
   id: string
 ): Promise<any | null> => {
-  const bikeIndex = await db.getIndex('/tb_bicicleta', id);
+  const bikeIndex = await db.getIndex("/tb_bicicleta", id);
 
   if (bikeIndex === -1) {
     return -1;
@@ -229,7 +229,7 @@ export const updateBikeStatus = async (
   id: string,
   acao: string
 ): Promise<any | null> => {
-  const bikeIndex = await db.getIndex('/tb_bicicleta', id);
+  const bikeIndex = await db.getIndex("/tb_bicicleta", id);
 
   if (bikeIndex === -1) {
     return -1;

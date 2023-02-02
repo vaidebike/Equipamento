@@ -33,6 +33,10 @@ export const bikeRentedBy = async (
 ): Promise<any | null> => {
   const { id } = req.params;
   const bike = await getBikeRentedByCyclist(db, id);
+  if (bike === -1) {
+    return notFound(res, 'Bike not found');
+  }
+
   return ok(res, bike);
 };
 
