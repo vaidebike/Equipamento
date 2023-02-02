@@ -153,6 +153,10 @@ export const getBikeRentedByCyclist = async (
   const cyclistDataWithBikeRented =
     await aluguelService.getBikeRentedByCyclistId(cyclistId);
 
+  if(cyclistDataWithBikeRented === null) {
+    return -1;
+  }
+
   const idBicicleta = cyclistDataWithBikeRented.bicicleta;
 
   const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
