@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { v4 as uuid } from 'uuid';
+import { AluguelService } from '../externalServices/AluguelService';
 
 export const createBike = async (
   db: any,
@@ -42,16 +43,16 @@ export const addRelBikeToLock = async (
     return -1;
   }
 
-  // const bikeIndexOnRel = await db.getIndex(
-  //   '/rel_tranca_bicicleta',
-  //   idBicicleta,
-  //   'idBicicleta'
-  // );
+  const bikeIndexOnRel = await db.getIndex(
+    '/rel_tranca_bicicleta',
+    idBicicleta,
+    'idBicicleta'
+  );
 
-  // if (bikeIndexOnRel !== -1) {
-  //   // SE A BICICLETA JÁ ESTIVER RELACIONADA A UMA TRANCA
-  //   return -600;
-  // }
+  if (bikeIndexOnRel !== -1) {
+    // SE A BICICLETA JÁ ESTIVER RELACIONADA A UMA TRANCA
+    return -600;
+  }
 
   const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
 
@@ -147,17 +148,19 @@ export const getBikeRentedByCyclist = async (
   db: any,
   cyclistId: string
 ): Promise<any | null> => {
-  // INTEGRAR COM MICROSSERVICO DE ALUGUEL
+  const aluguelService = new AluguelService();
 
-  const bike = {
-    id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    marca: 'Marca Teste',
-    modelo: 'Modelo Teste',
-    ano: 'Ano Teste',
-    numero: 0,
-    status: 'DISPONIVEL'
-  };
+  const cyclistDataWithBikeRented =
+    await aluguelService.getBikeRentedByCyclistId(cyclistId);
 
+  const idBicicleta = cyclistDataWithBikeRented.idBicicleta;
+
+  const bikeIndex = await db.getIndex('/tb_bicicleta', idBicicleta);
+
+  if (bikeIndex === -1) {
+    return -1;
+  }
+  const bike = await db.getData(`/tb_bicicleta[${bikeIndex}]`);
   return bike;
 };
 
